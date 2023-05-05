@@ -317,7 +317,11 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
       ![](../images/az120-4ab-26.png)
       
-1.  Within the RDP session to az12003a-vm0, Open Internet Explorer and click on **Ask me later** within the pop-up and open a new tab, the edge browser welcome screen will come up, select **Start without your data**.
+1.  Within the RDP session to az12003a-vm0, Open Internet Explorer and click on **Ask me later** within the pop-up.
+
+      ![](../images/az120-4ab-27.png)
+      
+1.  Open a new tab, the edge browser welcome screen will come up, select **Start without your data**.
 
    ![](https://github.com/CloudLabsAI-Azure/AIW-Azure-Network-Solutions/blob/main/media/startwithoutdata.png)
    
@@ -331,8 +335,12 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  Now download and install PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
-1.  Use PuTTY to connect via SSH to **i20-db-0** Azure VM. Acknowledge the security alert and, when prompted, provide the following credentials:
+      ![](../images/az120-4ab-28.png)
 
+1.  Use PuTTY to connect via SSH to **i20-db-0** Azure VM. Acknowledge the security alert and click on **Accept** and, when prompted, provide the following credentials:
+
+      ![](../images/az120-4ab-29.png)
+      
     -   Login as: **student**
 
     -   Password: **Pa55w.rd1234**
@@ -356,12 +364,12 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
     df -h
     ```
 
-1.  Repeat the previous steps on the i20-db-1 Azure VM.
+1.  Repeat the previous steps on the **i20-db-1** Azure VM.
 
 
 ### Task 4: Enable cross-node password-less SSH access
 
-1.  In the SSH session to i20-db-0, generate passphrase-less SSH key by running:
+1.  In the SSH session to **i20-db-0**, generate passphrase-less SSH key by running:
 
     ```
     ssh-keygen
@@ -375,17 +383,19 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  Copy the value of the key into Clipboard.
 
-1.  In the SSH session to i20-db-1, create the file **/root/.ssh/authorized\_keys** in the vi editor by running:
+1.  In the SSH session to **i20-db-1**, create the file **/root/.ssh/authorized_keys** in the vi editor by running:
 
     ```
     vi /root/.ssh/authorized_keys
     ```
 
-1.  In the vi editor, paste the key you generated on i20-db-0.
+1.  In the vi editor, paste the key you generated on **i20-db-0**.(Enter **I** to switch to Insert Mode to perform this step)
 
-1.  Save the changes and close the editor.
+1.  Save the changes and close the editor.(Press **esc key** and enter **:wq** to perform this step)
 
-1.  In the SSH session to i20-db-1, generate passphrase-less SSH key by running:
+     >**Note**: If you are unable to save and close the editor, connect to the Labvm via RDP with the credientials provided at the environment details page from your machine.
+
+1.  In the SSH session to **i20-db-1**, generate passphrase-less SSH key by running:
 
     ```
     ssh-keygen
@@ -399,17 +409,17 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  Copy the value of the key into Clipboard.
 
-1.  In the SSH session to i20-db-0, create the file **/root/.ssh/authorized\_keys** in the vi editor by running:
+1.  In the SSH session to **i20-db-0**, create the file **/root/.ssh/authorized_keys** in the vi editor by running:
 
     ```
     vi /root/.ssh/authorized_keys
     ```
 
-1.  In the vi editor, paste the key you generated on i20-db-1 starting from a new line.
+1.  In the vi editor, paste the key you generated on **i20-db-1** starting from a new line.
 
 1.  Save the changes and close the editor.
 
-1.  To verify that the configuration on was successful, in the SSH session to i20-db-0, establish an SSH session as **root** from i20-db-0 to i20-db-1 by running: 
+1.  To verify that the configuration on was successful, in the SSH session to **i20-db-0**, establish an SSH session as **root** from i20-db-0 to i20-db-1 by running: 
 
     ```
     ssh root@i20-db-1
@@ -443,7 +453,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 ### Task 5: Add YaST packages, update the Linux operating system, and install HA Extensions
 
-1.  In the SSH session to i20-db-0, run the following to launch YaST:
+1.  In the SSH session to **i20-db-0**, run the following to launch YaST:
 
     ```
     yast
@@ -451,7 +461,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  In **YaST Control Center**, select **Software -\> Add-On Products** and press **Enter**. This will load **Package Manager**.
 
-1.  On the **Installed Add-on Products** screen, verify that **Public Cloud Module** is already installed. Then, press **F9** twice to return to the shell prompt.
+1.  On the **Installed Add-on Products** screen, verify that **Public Cloud Module** is already installed. Then, press **Ctrl+F9** twice to return to the shell prompt.
 
 1.  In the SSH session to i20-db-0, run the following to update operating system (when prompted, type **y** and press the **Enter** key):
 
@@ -502,7 +512,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
     zypper install python-azure-mgmt-compute
     ```
 
-1. Repeat the previous steps in this task on i20-db-1.
+1. Repeat the previous steps in this task on **i20-db-1**.
 
 > **Result**: After you completed this exercise, you have onfigured operating system of Azure VMs running Linux to support a highly available SAP NetWeaver deployment
 
@@ -616,36 +626,51 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 1.  From the Azure Active Directory blade, navigate to the **App registrations** blade and then click **+ New registration**:
 
+      ![](../images/az120-4ab-30.png)
+
 1.  On the **Register an application** blade, specify the following settings, and click **Register**:
 
-    -   Name: **Stonith app**
+    -   Name: **Stonith app<inject key="DeploymentID" enableCopy="false"/>**
 
     -   Supported account type: **Accounts in this organizational directory only**
 
 1.  On the **Stonith app** blade, copy the value of **Application (client) ID** to Notepad. This will be referred to as **login_id** later in this exercise:
 
+      ![](../images/az120-4ab-31.png)
+
 1.  On the **Stonith app** blade, click **Certificates & secrets**.
+
+      ![](../images/az120-4ab-32.png)
 
 1.  On the **Stonith app - Certificates & secrets** blade, click **+ New client secret**.
 
 1.  In the **Add a client secret** pane, in the **Description** text box, type **STONITH app key**, in the **Expires** section, leave the default **Recommended: 6 months**, and then click **Add**.
 
+      ![](../images/az120-4ab-33.png)
+
 1.  Copy the resulting **Value** to Notepad (this entry is displayed only once, after you click **Add**). This will be referred to as **password** later in this exercise:
 
-
-### Task 5: Grant permissions to Azure VMs to the service principal of the STONITH app 
+      ![](../images/az120-4ab-34.png)
+      
+### Task 5: Grant permissions to Azure VMs to the service principal of the **STONITH app<inject key="DeploymentID" enableCopy="false"/>** 
 
 1.  In the Azure portal, navigate to the blade of the **i20-db-0** Azure VM
 
 1.  From the  **i20-db-0** blade, display the **i20-db-0 - Access control (IAM)** blade.
 
+      ![](../images/az120-4ab-35.png)
+
 1.  From the **i20-db-0 - Access control (IAM)** blade, add a role assignment with the following settings:
 
-    -   Role: **Virtual Machine Contributor**
+    -   Assignment type: *Leave the default setting* and click on **Next**
 
-    -   Assign access to: **Azure AD user, group, or service principal**
+    -   Role: Search and select **Virtual Machine Contributor** and click on **Next**
 
-    -   Select: **Stonith app**
+    -   Assign access to: **user, group, or service principal** and click on **+select members** and search and select **Stonith app<inject key="DeploymentID" enableCopy="false"/>** and click on **Add** and click on **Review + assign** twice to create the role assignment.
+
+      ![](../images/az120-4ab-36.png)
+      
+      ![](../images/az120-4ab-37.png)      
 
 1.  Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure VM
 
@@ -674,6 +699,8 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 1.  Within the RDP session to az12003a-vm0, start Internet Explorer and navigate to **https://i20-db-0:7630**. This should display the SUSE Hawk sign-in page.
 
    > **Note**: Ignore **This site is not secure** message.
+   
+   ![](../images/az120-4ab-38.png)
 
 1.  On the SUSE Hawk sign in page, login by using the following credentials:
 
@@ -681,43 +708,8 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
     -   Password: **Pa55w.rd1234**
 
+      ![](../images/az120-4ab-39.png)
+
 1.  Verify that the cluster status is healthy. If you are seeing a message indicating that one of two cluster nodes is unclean, restart that node from the Azure portal.
 
 > **Result**: After you completed this exercise, you have configured clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
-
-
-## Exercise 4: Remove lab resources
-
-Duration: 10 minutes
-
-In this exercise, you will remove resources provisioned in this lab.
-
-#### Task 1: Open Cloud Shell
-
-1. At the top of the portal, click the **Cloud Shell** icon to open Cloud Shell pane and choose Bash as the shell.
-
-1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_PREFIX` to the prefix of the name of the resource group containing the resources you provisioned in this lab:
-
-    ```cli
-    RESOURCE_GROUP_PREFIX='az12003a-'
-    ```
-
-1. In the Cloud Shell pane, run the following command to list all resource groups you created in this lab:
-
-    ```cli
-    az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv
-    ```
-
-1. Verify that the output contains only the resource group you created in this lab. This resource group with all of their resources will be deleted in the next task.
-
-#### Task 2: Delete resource groups
-
-1. In the Cloud Shell pane, run the following command to delete the resource group and their resources.
-
-    ```cli
-    az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
-    ```
-
-1. Close the Cloud Shell pane.
-
-> **Result**: After you completed this exercise, you have removed the resources used in this lab.
