@@ -39,39 +39,26 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 ### Task 1: Create a virtual network that will host a highly available SAP NetWeaver deployment.
 
-1.  From the lab computer, start a Web browser, and navigate to the Azure portal at **https://portal.azure.com**
-
-1.  If prompted, sign in with the work or school or personal Microsoft account with the owner or contributor role to the Azure subscription you will be using for this lab and the the Global Administrator role in the Azure AD tenant associated with your subscription.
-
 1.  In the Azure Portal, start a Bash session in Cloud Shell. 
 
-    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
+     ![](../images/az120-4ab-1.png)
 
-1.  In the Cloud Shell pane, run the following command to specify the Azure region that supports availability zones and where you want to create resources for this lab (replace `<region>` with the name of the Azure region which supports availablity zones):
+1.  When *no storage mounted* is prompted, then select Show advanced settings and then select Use existing and choose **az12003a-dmz-RG** resource group. Then select Create new against Storage account and enter **cloudstore<inject key="DeploymentID" enableCopy="false"/>** as well as for File Share, select Create new and enter **blob** and then click on Create storage, and wait for the Azure Cloud Shell to initialize.
 
-    ```cli
-    LOCATION='<region>'
-    ```
+     ![](../images/az120-4ab-2.png)
+     
+     ![](../images/az120-4ab-3.png)
+     
+     ![](../images/az120-4ab-4.png)     
 
-    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
 
-    > **Note**: Ensure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)
-
-    > **Note**: To identify Azure regions which support availability zones, refer to [https://docs.microsoft.com/en-us/azure/availability-zones/az-region](https://docs.microsoft.com/en-us/azure/availability-zones/az-region)
-
-1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous task:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group which was precreated and will use this resource group to provision new resources. 
 
     ```cli
     RESOURCE_GROUP_NAME='az12003a-sap-RG'
     ```
 
-1.  In the Cloud Shell pane, run the following command to create a resource group in the region you specified:
-
-    ```cli
-    az group create --resource-group $RESOURCE_GROUP_NAME --location $LOCATION
-    ```
-
-1.  In the Cloud Shell pane, run the following command to create a virtual network with a single subnet in the resource group you created:
+1.  In the Cloud Shell pane, run the following command to create a virtual network with a single subnet in the existing resource group:
 
     ```cli
     VNET_NAME='az12003a-sap-vnet'
@@ -82,7 +69,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     SUBNET_PREFIX='10.3.0.0/24'
 
-    az network vnet create --resource-group $RESOURCE_GROUP_NAME --location $LOCATION --name $VNET_NAME --address-prefixes $VNET_PREFIX --subnet-name $SUBNET_NAME --subnet-prefixes $SUBNET_PREFIX
+    az network vnet create --resource-group $RESOURCE_GROUP_NAME --name $VNET_NAME --address-prefixes $VNET_PREFIX --subnet-name $SUBNET_NAME --subnet-prefixes $SUBNET_PREFIX
     ```
 
 1.  In the Cloud Shell pane, run the following command to identify the Resource Id of the subnet of the newly created virtual network:
@@ -99,7 +86,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: Make sure to use Microsoft Edge or a third party browser. Do not use Internet Explorer.
 
-1.  On the page titled **SAP NetWeaver 3-tier compatible template using a Marketplace image - MD**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
+1.  On the page titled **SAP NetWeaver 3-tier (managed disk)**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
+
+     ![](../images/az120-4ab-5.png)
 
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, select **Edit template**.
 
@@ -107,13 +96,15 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   in the line **197**, replace `"dbVMSize": "Standard_E8s_v3",` with `"dbVMSize": "Standard_D4s_v3",`
 
+     ![](../images/labintro5.png)
+
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
 
-    -   Subscription: *the name of your Azure subscription*
+    -   Subscription: *Leave the default subscription*
+    
+    -   Resource group: Select **az12003a-sap-RG** from the drop-down list.
 
-    -   Resource group: *the name of the resource group you used in the previous task*
-
-    -   Location: *the same Azure region that you specified in the first task of this exercise*
+    -   Location: *Leave the default region*
 
     -   SAP System Id: **I20**
 
@@ -143,9 +134,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   _artifacts Location Sas Token: *leave blank*
 
+     ![](../images/az120-4ab-6.png)
+     
+     ![](../images/az120-4ab-7.png)     
+
 1.  Do not wait for the deployment to complete but instead proceed to the next task. 
 
-    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
+       > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
 
        - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
 
@@ -162,67 +157,85 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  From the **New** blade, initiate creation of a new Azure VM based on the **Windows Server 2019 Datacenter** image.
 
-1.  Provision a Azure VM with the following settings (leave all others with their default values):
+1. Provision a Azure VM with the following settings under **Basics** tab (leave all others with their default values) and click on **Next:Disks**:
 
-    -   Subscription: *the name of your Azure subscription*
+    | Setting | Value |
+    |   --    |  --   |
+    | **Subscription** | *Leave the default subscription*  |
+    | **Resource group** | Select **az12003a-dmz-RG** resource group from drop-down list|
+    | **Virtual machine name** | **az12003a-vm0** |
+    | **Region** | *Leave the default region* |
+    | **Availability options** | **No infrastructure redundancy required** |
+    | **Image** | *select* **Windows Server 2019 Datacenter - Gen2** |
+    | **Size** | **Standard D2s_v3** (you can select it from clicking **see all sizes**)|
+    | **Username** | **Student** |
+    | **Password** | **Pa55w.rd1234** |
+    | **Public inbound ports** | **Allow selected ports** |
+    | **Selected inbound ports** | **RDP (3389)** |
+    | **Would you like to use an existing Windows Server license?** | **No** |
 
-    -   Resource group: *the name of a new resource group* **az12003a-dmz-RG**
+1.  Under **Disks** tab, fill the following details (leave all others with their default values) and click on **Next:Networking**:
 
-    -   Virtual machine name: **az12003a-vm0**
+    | Setting | Value |
+    |   --    |  --   |
+    | **OS disk type** | **Standard HDD** |
 
-    -   Region: *the same Azure region where you deployed Azure VMs in the previous tasks of this exercise*
+1.  Under **Networking** tab, fill the following details:
 
-    -   Availability options: **No infrastructure redundancy required**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Virtual network** | **az12003a-sap-vnet** |
 
-    -   Image: **Windows Server 2019 Datacenter - Gen2**
+    - For **Subnet name**- click on **Manage Subnet Configuration**, then select **+Subnet**. On the Add Subnet page, provide the following values and click on **Save**:
 
-    -   Size: **Standard D2s_v3** or similar
+    -  **Subnet name** - **bastionSubnet** 
+    -  **Subnet address range** - **10.3.255.0/24** 
 
-    -   Username: **Student**
+      ![](../images/az120-4ab-11.png)
+      
+      ![](../images/az120-4ab-10.png)    
+      
+ 1. After creating the new subnet, move back to the **Networking** tab of Create a virtual machine, and fill the other remaining details (leave all others with their default values) and click on **Next:Management**:
 
-    -   Password: **Pa55w.rd1234**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Subnet name** | **bastionSubnet** *select the one that you have created in the previous step* |
+    | **Public IP address** | *a new IP address named* **az12003a-vm0-ip** |
+    | **NIC network security group** | **Basic**  |
+    | **Public inbound ports** | **Allow selected ports** |
+    | **Selected inbound ports** | **RDP (3389)** |
+    | **Enable accelerated networking** | **On** |
+    | **Load balancing Options** | **None** |    
+    
+ 1. On the **Management** tab, fill the following details (leave all others with their default values) and click on **Next:Monitoring**:
 
-    -   Public inbound ports: **Allow selected ports**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Enable system assigned managed identity** | **Off** |
+    | **Login with Azure AD** | **Off** |
+    | **Enable auto-shutdown** | **Off** |
+    | **Patch orchestration options** | **Manual Updates** |
 
-    -   Select inbound ports: **RDP (3389)**
+1. On the **Monitoring** tab, fill the following details (leave all others with their default values) and click on **Next:Advanced**:    
 
-    -   Already have a Windows license?: **No**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Boot diagnostics** | **Disable** |
+    | **Enable OS guest diagnostics** | **Off** |
 
-    -   OS disk type: **Standard HDD**
+1. On the **Advanced** tab, fill the following details (leave all others with their default values) and click on **Next:Tags**:        
 
-    -   Virtual network: **az12003a-sap-vnet**
+    | Setting | Value |
+    |   --    |  --   |  
+    | **Extensions** | *None* |
 
-    -   Subnet: a new subnet named **bastionSubnet (10.3.255.0/24)**
+1. On the **Tags** tab, fill the following details (leave all others with their default values) and click on **Next:Review+create**:      
 
-    -   Public IP: *a new IP address named* **az12003a-vm0-ip**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Tags** | *None* |
 
-    -   NIC network security group: **Basic**
-
-    -   Public inbound ports: **Allow selected ports**
-
-    -   Select inbound ports: **RDP (3389)**
-
-    -   Accelerated networking: **Off**
-
-    -   Place this virtual machine behind an existing load balancing solutions: **No**
-
-    -   Boot diagnostics: **Disable**
-
-    -   OS guest diagnostics: **Off**
-
-    -   System assigned managed identity: **Off**
-
-    -   Login with AAD credentials (Preview): **Off**
-
-    -   Enable auto-shutdown: **Off**
-
-    -   Enable backup: **Off**
-
-    -   Patch orchestration options **Manual updates**
-
-    -   Extensions: **None**
-
-    -   Tags: **None**
+1. Click on **Create**.
 
 1.  Wait for the provisioning to complete. This should take a few minutes.
 
@@ -241,34 +254,82 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  From the lab computer, in the Azure portal, navigate to the blade of the **i20-db-0** Azure VM.
 
+      ![](../images/az120-4ab-12.png)
+
 1.  From the **i20-db-0** blade, navigate to its **Networking** blade. 
+
+      ![](../images/az120-4ab-13.png)
 
 1.  From the **i20-db-0 - Networking** blade, navigate to the network interface of the i20-db-0. 
 
+      ![](../images/az120-4ab-14.png)
+
 1.  From the blade of the network interface of the i20-db-0, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
 
-1.  On the **ipconfig1** blade, set the private IP address to **10.3.0.20**, change its assignment to **Static** and save the change.
+      ![](../images/az120-4ab-15.png)
+
+1.  On the **ipconfig1** blade, change its assignment to **Static**, set the private IP address to **10.3.0.20** and save the change.
+
+      ![](../images/az120-4ab-16.png)
 
 1.  In the Azure portal, navigate to the blade of the **i20-db-1** Azure VM.
 
+      ![](../images/az120-4ab-17.png)
+
 1.  From the **i20-db-1** blade, navigate to its **Networking** blade. 
+
+      ![](../images/az120-4ab-18.png)
 
 1.  From the **i20-db-1 - Networking** blade, navigate to the network interface of the i20-db-1. 
 
+      ![](../images/az120-4ab-19.png)
+
 1.  From the blade of the network interface of the i20-db-1, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
 
-1.  On the **ipconfig1** blade, set the private IP address to **10.3.0.21**, change its assignment to **Static** and save the change.
+      ![](../images/az120-4ab-20.png)
+
+1.  On the **ipconfig1** blade, change its assignment to **Static**, set the private IP address to **10.3.0.21** and save the change.
+
+      ![](../images/az120-4ab-21.png)
 
 
 ### Task 2: Connect to the database tier Azure VMs.
 
 1.  From the lab computer, in the Azure portal, navigate to the **az12003a-vm0** blade.
 
-1.  From the **az12003a-vm0** blade, connect to the Azure VM az12003a-vm0 via Remote Desktop. 
+1.  From the **az12003a-vm0** blade, connect to the Azure VM az12003a-vm0 via Remote Desktop, select **Download RDP file** and click on *keep* to download the file and open the downloaded RDP file, click on **Connect**. 
+
+      ![](../images/az120-4ab-22.png)
+      
+      ![](../images/az120-4ab-23.png)
+      
+      ![](../images/az120-4ab-24.png)
+      
+      ![](../images/az120-4ab-25.png)
+      
+ 1.  Use the below credientials to connect. 
+
+      -   Login as: **.\student**
+
+      -   Password: **Pa55w.rd1234**
 
 1.  Within the RDP session to az12003a-vm0, in Server Manager, navigate to the **Local Server** view and turn off **IE Enhanced Security Configuration**.
 
-1.  Within the RDP session to az12003a-vm0, download and install PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+      ![](../images/az120-4ab-26.png)
+      
+1.  Within the RDP session to az12003a-vm0, Open Internet Explorer and click on **Ask me later** within the pop-up and open a new tab, the edge browser welcome screen will come up, select **Start without your data**.
+
+   ![](https://github.com/CloudLabsAI-Azure/AIW-Azure-Network-Solutions/blob/main/media/startwithoutdata.png)
+   
+1.  On the next window, click on **Continue without this data**.
+
+    ![](https://github.com/CloudLabsAI-Azure/AIW-Azure-Network-Solutions/blob/main/media/continuewithoutthis.png)
+   
+1.  Click on **Confirm and start browsing**.
+
+    ![](https://github.com/CloudLabsAI-Azure/AIW-Azure-Network-Solutions/blob/main/media/confirmandstartbrowsing.png)   
+
+1.  Now download and install PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
 1.  Use PuTTY to connect via SSH to **i20-db-0** Azure VM. Acknowledge the security alert and, when prompted, provide the following credentials:
 
