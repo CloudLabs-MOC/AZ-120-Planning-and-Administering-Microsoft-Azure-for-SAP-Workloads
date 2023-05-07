@@ -713,3 +713,47 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 1.  Verify that the cluster status is healthy. If you are seeing a message indicating that one of two cluster nodes is unclean, restart that node from the Azure portal.
 
 > **Result**: After you completed this exercise, you have configured clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
+
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Click the Lab Validation icon located at the upper right corner of the lab guide section which navigates to the Lab Validation Page.
+> - Hit the Validate button for the corresponding task.If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+
+
+## Exercise 4: Remove lab resources
+
+Duration: 10 minutes
+
+In this exercise, you will remove resources provisioned in this lab.
+
+#### Task 1: Open Cloud Shell
+
+1. At the top of the portal, click the **Cloud Shell** icon to open Cloud Shell pane and choose Bash as the shell.
+
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_PREFIX` to the prefix of the name of the resource group containing the resources you provisioned in this lab:
+
+    ```cli
+    RESOURCE_GROUP_PREFIX='az12003a-'
+    ```
+
+1. In the Cloud Shell pane, run the following command to list all resource groups you created in this lab:
+
+    ```cli
+    az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv
+    ```
+
+1. Verify that the output contains only the resource group you created in this lab. This resource group with all of their resources will be deleted in the next task.
+
+#### Task 2: Delete resource groups
+
+1. In the Cloud Shell pane, run the following command to delete the resource group and their resources.
+
+    ```cli
+    az group list --query "[?starts_with(name,'$RESOURCE_GROUP_PREFIX')]".name --output tsv | xargs -L1 bash -c 'az group delete --name $0 --no-wait --yes'
+    ```
+
+1. Close the Cloud Shell pane.
+
+> **Result**: After you completed this exercise, you have removed the resources used in this lab.
+
