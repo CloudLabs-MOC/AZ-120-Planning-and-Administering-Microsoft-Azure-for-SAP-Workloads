@@ -1,4 +1,3 @@
-
 # AZ 120 Module 4: Deploy SAP on Azure
 # Lab 4a: Implement SAP architecture on Azure VMs running Linux
 
