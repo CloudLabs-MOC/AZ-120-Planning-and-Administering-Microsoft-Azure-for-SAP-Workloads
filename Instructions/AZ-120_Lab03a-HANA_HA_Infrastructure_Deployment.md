@@ -564,7 +564,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
     passwd hacluster
     ```
 
-1.  Repeat the previous step on i20-db-1.
+1.  Repeat the previous step on **i20-db-1**.
 
 ### Task 2: Review corosync configuration
 
