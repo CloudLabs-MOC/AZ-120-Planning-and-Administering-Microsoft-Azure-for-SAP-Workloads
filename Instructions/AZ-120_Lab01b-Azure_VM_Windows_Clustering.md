@@ -87,7 +87,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     $deploymentName = 'az1201b-' + $(Get-Date -Format 'yyyy-MM-dd-hh-mm')
     ```
 
-1.  In the Cloud Shell pane, run the following commands to set the name of the administrative user account and its password (replace the `<username>` and `<password>` placeholders with the name of the administrative user account and the value of its password, respectively):
+1.  In the Cloud Shell pane, run the following commands to set the name of the administrative user account and its password (replace the `<username>` and `<password>` placeholders with the name **Student** and the value of  password **Pa55w.rd1234** respectively):
 
     ```
     $adminUsername = '<username>'
