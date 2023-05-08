@@ -777,10 +777,18 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     -   IP address: **10.0.1.240**
 
     -   Availability zone: **Zone-redundant**
+    
+    -  Click on **Add**
 
-1.  Wait until the load balancer is provisioned and then navigate to its blade in the Azure portal.
+1. Select **Review + create**
 
-1.  From the **az12001b-cl-lb0** blade, add a backend pool with the following settings:
+1. Review the configuration and click on **Create**.
+
+1.  Wait until the load balancer is provisioned.
+
+1. Once the deployment is done, click on **Go to resource**.
+
+1. On the **az12001b-cl-lb0** blade, select **Backend pools (1)**, click on **+ Add (2)**. 
 
     -   Name: **az12001b-cl-lb0-bepool**
 
@@ -788,12 +796,15 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Backend Pool Configuration: **IP address**
 
-    -   IP address: **10.0.1.4** Resource Name **az1201b-cl-vm0**
+    -   IP address:  Resource Name **az1201b-cl-vm0**
 
-    -   IP address: **10.0.1.5** Resource Name **az1201b-cl-vm1**
+    -   IP address:  Resource Name **az1201b-cl-vm1**
+
+   >**Note**: Please identify the IP Address of VM's and select the IP Address from the dropdowm.
+
     -   Click on **Save**
 
-1.  From the **az12001b-cl-lb0** blade, add a health probe with the following settings:
+1.  On the **az12001b-cl-lb0** blade, select **Health probes (1)** select **+ Add (2)**.
 
     -   Name: **az12001b-cl-lb0-hprobe**
 
@@ -803,9 +814,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Interval: **5** *seconds*
 
-    -   Unhealthy threshold: **2** *consecutive failures*
+    -   click on **Add (5)**
 
-1.  From the **az12001b-cl-lb0** blade, add a network load balancing rule with the following settings:
+1. On the **az12001b-cl-lb0** blade, select **Load balancing rules (1)**, select **+ Add (2)**.
+
+1. On the **Add load balancing rule** blade, specify the following settings:
 
     -   Name: **az12001b-cl-lb0-lbruletcp1433**
 
@@ -830,6 +843,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     -   Idle timeout (minutes): **4**
 
     -   Floating IP (direct server return): **Enabled**
+
+    -  Click on **Save**.
 
 ### Task 3: Create and configure Azure Load Balancers handling outbound traffic
 
