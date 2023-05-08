@@ -1,4 +1,3 @@
-
 # AZ 120 Module 4: Deploy SAP on Azure
 # Lab 4a: Implement SAP architecture on Azure VMs running Linux
 
@@ -41,33 +40,24 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  In the Azure Portal, start a Bash session in Cloud Shell. 
 
-    > **Note**: If this is the first time you are launching Cloud Shell in the current Azure subscription, you will be asked to create an Azure file share to persist Cloud Shell files. If so, accept the defaults, which will result in creation of a storage account in an automatically generated resource group.
+     ![](../images/az120-4ab-1.png)
 
-1.  In the Cloud Shell pane, run the following command to specify the Azure region that supports availability zones and where you want to create resources for this lab (replace `<region>` with the name of the Azure region which supports availablity zones):
+1.  When *no storage mounted* is prompted, then select Show advanced settings and then select Use existing and choose **az12003a-dmz-RG** resource group. Then select Create new against Storage account and enter **cloudstore<inject key="DeploymentID" enableCopy="false"/>** as well as for File Share, select Create new and enter **blob** and then click on Create storage, and wait for the Azure Cloud Shell to initialize.
 
-    ```cli
-    LOCATION='<region>'
-    ```
+     ![](../images/az120-4ab-2.png)
+     
+     ![](../images/az120-4ab-3.png)
+     
+     ![](../images/az120-4ab-4.png)     
 
-    > **Note**: Consider using **East US** or **East US2** regions for deployment of your resources. 
 
-    > **Note**: Ensure to use the proper notation for the Azure region (short name which does not include a space, e.g. **eastus** rather than **US East**)
-
-    > **Note**: To identify Azure regions which support availability zones, refer to [https://docs.microsoft.com/en-us/azure/availability-zones/az-region](https://docs.microsoft.com/en-us/azure/availability-zones/az-region)
-
-1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous task:
+1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group which was precreated and will use this resource group to provision new resources. 
 
     ```cli
     RESOURCE_GROUP_NAME='az12003a-sap-RG'
     ```
 
-1.  In the Cloud Shell pane, run the following command to create a resource group in the region you specified:
-
-    ```cli
-    az group create --resource-group $RESOURCE_GROUP_NAME --location $LOCATION
-    ```
-
-1.  In the Cloud Shell pane, run the following command to create a virtual network with a single subnet in the resource group you created:
+1.  In the Cloud Shell pane, run the following command to create a virtual network with a single subnet in the existing resource group:
 
     ```cli
     VNET_NAME='az12003a-sap-vnet'
@@ -78,7 +68,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     SUBNET_PREFIX='10.3.0.0/24'
 
-    az network vnet create --resource-group $RESOURCE_GROUP_NAME --location $LOCATION --name $VNET_NAME --address-prefixes $VNET_PREFIX --subnet-name $SUBNET_NAME --subnet-prefixes $SUBNET_PREFIX
+    az network vnet create --resource-group $RESOURCE_GROUP_NAME --name $VNET_NAME --address-prefixes $VNET_PREFIX --subnet-name $SUBNET_NAME --subnet-prefixes $SUBNET_PREFIX
     ```
 
 1.  In the Cloud Shell pane, run the following command to identify the Resource Id of the subnet of the newly created virtual network:
@@ -95,7 +85,9 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     > **Note**: Make sure to use Microsoft Edge or a third party browser. Do not use Internet Explorer.
 
-1.  On the page titled **SAP NetWeaver 3-tier compatible template using a Marketplace image - MD**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
+1.  On the page titled **SAP NetWeaver 3-tier (managed disk)**, click **Deploy to Azure**. This will automatically redirect your browser to the Azure portal and display the **SAP NetWeaver 3-tier (managed disk)** blade.
+
+     ![](../images/az120-4ab-5.png)
 
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, select **Edit template**.
 
@@ -103,13 +95,15 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   in the line **197**, replace `"dbVMSize": "Standard_E8s_v3",` with `"dbVMSize": "Standard_D4s_v3",`
 
+     ![](../images/labintro5.png)
+
 1.  On the **SAP NetWeaver 3-tier (managed disk)** blade, initiate deployment with the following settings:
 
-    -   Subscription: *the name of your Azure subscription*
+    -   Subscription: *Leave the default subscription*
+    
+    -   Resource group: Select **az12003a-sap-RG** from the drop-down list.
 
-    -   Resource group: *the name of the resource group you used in the previous task*
-
-    -   Location: *the same Azure region that you specified in the first task of this exercise*
+    -   Location: *Leave the default region*
 
     -   SAP System Id: **I20**
 
@@ -139,9 +133,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
     -   _artifacts Location Sas Token: *leave blank*
 
+     ![](../images/az120-4ab-6.png)
+     
+     ![](../images/az120-4ab-7.png)     
+
 1.  Do not wait for the deployment to complete but instead proceed to the next task. 
 
-    > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
+       > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
 
        - in the Azure portal, on the **Deployment** blade, review the deployment details and identify the VM(s) where the installation of the CustomScriptExtension failed
 
@@ -158,67 +156,85 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  From the **New** blade, initiate creation of a new Azure VM based on the **Windows Server 2019 Datacenter** image.
 
-1.  Provision a Azure VM with the following settings (leave all others with their default values):
+1. Provision a Azure VM with the following settings under **Basics** tab (leave all others with their default values) and click on **Next:Disks**:
 
-    -   Subscription: *the name of your Azure subscription*
+    | Setting | Value |
+    |   --    |  --   |
+    | **Subscription** | *Leave the default subscription*  |
+    | **Resource group** | Select **az12003a-dmz-RG** resource group from drop-down list|
+    | **Virtual machine name** | **az12003a-vm0** |
+    | **Region** | *Leave the default region* |
+    | **Availability options** | **No infrastructure redundancy required** |
+    | **Image** | *select* **Windows Server 2019 Datacenter - Gen2** |
+    | **Size** | **Standard D2s_v3** (you can select it from clicking **see all sizes**)|
+    | **Username** | **Student** |
+    | **Password** | **Pa55w.rd1234** |
+    | **Public inbound ports** | **Allow selected ports** |
+    | **Selected inbound ports** | **RDP (3389)** |
+    | **Would you like to use an existing Windows Server license?** | **No** |
 
-    -   Resource group: *the name of a new resource group* **az12003a-dmz-RG**
+1.  Under **Disks** tab, fill the following details (leave all others with their default values) and click on **Next:Networking**:
 
-    -   Virtual machine name: **az12003a-vm0**
+    | Setting | Value |
+    |   --    |  --   |
+    | **OS disk type** | **Standard HDD** |
 
-    -   Region: *the same Azure region where you deployed Azure VMs in the previous tasks of this exercise*
+1.  Under **Networking** tab, fill the following details:
 
-    -   Availability options: **No infrastructure redundancy required**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Virtual network** | **az12003a-sap-vnet** |
 
-    -   Image: **Windows Server 2019 Datacenter - Gen2**
+    - For **Subnet name**- click on **Manage Subnet Configuration**, then select **+Subnet**. On the Add Subnet page, provide the following values and click on **Save**:
 
-    -   Size: **Standard D2s_v3** or similar
+    -  **Subnet name** - **bastionSubnet** 
+    -  **Subnet address range** - **10.3.255.0/24** 
 
-    -   Username: **Student**
+      ![](../images/az120-4ab-11.png)
+      
+      ![](../images/az120-4ab-10.png)    
+      
+ 1. After creating the new subnet, move back to the **Networking** tab of Create a virtual machine, and fill the other remaining details (leave all others with their default values) and click on **Next:Management**:
 
-    -   Password: **Pa55w.rd1234**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Subnet name** | **bastionSubnet** *select the one that you have created in the previous step* |
+    | **Public IP address** | *a new IP address named* **az12003a-vm0-ip** |
+    | **NIC network security group** | **Basic**  |
+    | **Public inbound ports** | **Allow selected ports** |
+    | **Selected inbound ports** | **RDP (3389)** |
+    | **Enable accelerated networking** | **On** |
+    | **Load balancing Options** | **None** |    
+    
+ 1. On the **Management** tab, fill the following details (leave all others with their default values) and click on **Next:Monitoring**:
 
-    -   Public inbound ports: **Allow selected ports**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Enable system assigned managed identity** | **Off** |
+    | **Login with Azure AD** | **Off** |
+    | **Enable auto-shutdown** | **Off** |
+    | **Patch orchestration options** | **Manual Updates** |
 
-    -   Select inbound ports: **RDP (3389)**
+1. On the **Monitoring** tab, fill the following details (leave all others with their default values) and click on **Next:Advanced**:    
 
-    -   Already have a Windows license?: **No**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Boot diagnostics** | **Disable** |
+    | **Enable OS guest diagnostics** | **Off** |
 
-    -   OS disk type: **Standard HDD**
+1. On the **Advanced** tab, fill the following details (leave all others with their default values) and click on **Next:Tags**:        
 
-    -   Virtual network: **az12003a-sap-vnet**
+    | Setting | Value |
+    |   --    |  --   |  
+    | **Extensions** | *None* |
 
-    -   Subnet: a new subnet named **bastionSubnet (10.3.255.0/24)**
+1. On the **Tags** tab, fill the following details (leave all others with their default values) and click on **Next:Review+create**:      
 
-    -   Public IP: *a new IP address named* **az12003a-vm0-ip**
+    | Setting | Value |
+    |   --    |  --   |
+    | **Tags** | *None* |
 
-    -   NIC network security group: **Basic**
-
-    -   Public inbound ports: **Allow selected ports**
-
-    -   Select inbound ports: **RDP (3389)**
-
-    -   Accelerated networking: **Off**
-
-    -   Place this virtual machine behind an existing load balancing solutions: **No**
-
-    -   Boot diagnostics: **Disable**
-
-    -   OS guest diagnostics: **Off**
-
-    -   System assigned managed identity: **Off**
-
-    -   Login with AAD credentials (Preview): **Off**
-
-    -   Enable auto-shutdown: **Off**
-
-    -   Enable backup: **Off**
-
-    -   Patch orchestration options **Manual updates**
-
-    -   Extensions: **None**
-
-    -   Tags: **None**
+1. Click on **Create**.
 
 1.  Wait for the provisioning to complete. This should take a few minutes.
 
@@ -237,37 +253,93 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  From the lab computer, in the Azure portal, navigate to the blade of the **i20-db-0** Azure VM.
 
+      ![](../images/az120-4ab-12.png)
+
 1.  From the **i20-db-0** blade, navigate to its **Networking** blade. 
+
+      ![](../images/az120-4ab-13.png)
 
 1.  From the **i20-db-0 - Networking** blade, navigate to the network interface of the i20-db-0. 
 
+      ![](../images/az120-4ab-14.png)
+
 1.  From the blade of the network interface of the i20-db-0, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
 
-1.  On the **ipconfig1** blade, set the private IP address to **10.3.0.20**, change its assignment to **Static** and save the change.
+      ![](../images/az120-4ab-15.png)
+
+1.  On the **ipconfig1** blade, change its assignment to **Static**, set the private IP address to **10.3.0.20** and save the change.
+
+      ![](../images/az120-4ab-16.png)
 
 1.  In the Azure portal, navigate to the blade of the **i20-db-1** Azure VM.
 
+      ![](../images/az120-4ab-17.png)
+
 1.  From the **i20-db-1** blade, navigate to its **Networking** blade. 
+
+      ![](../images/az120-4ab-18.png)
 
 1.  From the **i20-db-1 - Networking** blade, navigate to the network interface of the i20-db-1. 
 
+      ![](../images/az120-4ab-19.png)
+
 1.  From the blade of the network interface of the i20-db-1, navigate to its IP configurations blade and, from there, display its **ipconfig1** blade.
 
-1.  On the **ipconfig1** blade, set the private IP address to **10.3.0.21**, change its assignment to **Static** and save the change.
+      ![](../images/az120-4ab-20.png)
+
+1.  On the **ipconfig1** blade, change its assignment to **Static**, set the private IP address to **10.3.0.21** and save the change.
+
+      ![](../images/az120-4ab-21.png)
 
 
 ### Task 2: Connect to the database tier Azure VMs.
 
 1.  From the lab computer, in the Azure portal, navigate to the **az12003a-vm0** blade.
 
-1.  From the **az12003a-vm0** blade, connect to the Azure VM az12003a-vm0 via Remote Desktop. 
+1.  From the **az12003a-vm0** blade, connect to the Azure VM az12003a-vm0 via Remote Desktop, select **Download RDP file** and click on *keep* to download the file and open the downloaded RDP file, click on **Connect**. 
+
+      ![](../images/az120-4ab-22.png)
+      
+      ![](../images/az120-4ab-23.png)
+      
+      ![](../images/az120-4ab-24.png)
+      
+      ![](../images/az120-4ab-25.png)
+      
+ 1.  Use the below credientials to connect. 
+
+      -   Login as: **.\student**
+
+      -   Password: **Pa55w.rd1234**
 
 1.  Within the RDP session to az12003a-vm0, in Server Manager, navigate to the **Local Server** view and turn off **IE Enhanced Security Configuration**.
 
-1.  Within the RDP session to az12003a-vm0, download and install PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+      ![](../images/az120-4ab-26.png)
+      
+1.  Within the RDP session to az12003a-vm0, Open Internet Explorer and click on **Ask me later** within the pop-up.
 
-1.  Use PuTTY to connect via SSH to **i20-db-0** Azure VM. Acknowledge the security alert and, when prompted, provide the following credentials:
+      ![](../images/az120-4ab-27.png)
+      
+1.  Open a new tab, the edge browser welcome screen will come up, select **Start without your data**.
 
+   ![](https://github.com/CloudLabsAI-Azure/AIW-Azure-Network-Solutions/blob/main/media/startwithoutdata.png)
+   
+1.  On the next window, click on **Continue without this data**.
+
+    ![](https://github.com/CloudLabsAI-Azure/AIW-Azure-Network-Solutions/blob/main/media/continuewithoutthis.png)
+   
+1.  Click on **Confirm and start browsing**.
+
+    ![](https://github.com/CloudLabsAI-Azure/AIW-Azure-Network-Solutions/blob/main/media/confirmandstartbrowsing.png)   
+
+1.  Now download and install PuTTY from [**https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+
+      ![](../images/az120-4ab-28.png)
+
+1.  Use PuTTY to connect via SSH to **i20-db-0** Azure VM. Acknowledge the security alert and click on **Accept** and, when prompted, provide the following credentials:
+
+      ![](../images/az120-4ab-29.png)
+      
     -   Login as: **student**
 
     -   Password: **Pa55w.rd1234**
@@ -291,12 +363,12 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
     df -h
     ```
 
-1.  Repeat the previous steps on the i20-db-1 Azure VM.
+1.  Repeat the previous steps on the **i20-db-1** Azure VM.
 
 
 ### Task 4: Enable cross-node password-less SSH access
 
-1.  In the SSH session to i20-db-0, generate passphrase-less SSH key by running:
+1.  In the SSH session to **i20-db-0**, generate passphrase-less SSH key by running:
 
     ```
     ssh-keygen
@@ -310,17 +382,19 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  Copy the value of the key into Clipboard.
 
-1.  In the SSH session to i20-db-1, create the file **/root/.ssh/authorized\_keys** in the vi editor by running:
+1.  In the SSH session to **i20-db-1**, create the file **/root/.ssh/authorized_keys** in the vi editor by running:
 
     ```
     vi /root/.ssh/authorized_keys
     ```
 
-1.  In the vi editor, paste the key you generated on i20-db-0.
+1.  In the vi editor, paste the key you generated on **i20-db-0**.(Enter **I** to switch to Insert Mode to perform this step)
 
-1.  Save the changes and close the editor.
+1.  Save the changes and close the editor.(Press **esc key** and enter **:wq** to perform this step)
 
-1.  In the SSH session to i20-db-1, generate passphrase-less SSH key by running:
+     >**Note**: If you are unable to save and close the editor, connect to the Labvm via RDP with the credientials provided at the environment details page from your machine.
+
+1.  In the SSH session to **i20-db-1**, generate passphrase-less SSH key by running:
 
     ```
     ssh-keygen
@@ -334,17 +408,17 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  Copy the value of the key into Clipboard.
 
-1.  In the SSH session to i20-db-0, create the file **/root/.ssh/authorized\_keys** in the vi editor by running:
+1.  In the SSH session to **i20-db-0**, create the file **/root/.ssh/authorized_keys** in the vi editor by running:
 
     ```
     vi /root/.ssh/authorized_keys
     ```
 
-1.  In the vi editor, paste the key you generated on i20-db-1 starting from a new line.
+1.  In the vi editor, paste the key you generated on **i20-db-1** starting from a new line.
 
 1.  Save the changes and close the editor.
 
-1.  To verify that the configuration on was successful, in the SSH session to i20-db-0, establish an SSH session as **root** from i20-db-0 to i20-db-1 by running: 
+1.  To verify that the configuration on was successful, in the SSH session to **i20-db-0**, establish an SSH session as **root** from i20-db-0 to i20-db-1 by running: 
 
     ```
     ssh root@i20-db-1
@@ -378,7 +452,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 ### Task 5: Add YaST packages, update the Linux operating system, and install HA Extensions
 
-1.  In the SSH session to i20-db-0, run the following to launch YaST:
+1.  In the SSH session to **i20-db-0**, run the following to launch YaST:
 
     ```
     yast
@@ -386,7 +460,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 
 1.  In **YaST Control Center**, select **Software -\> Add-On Products** and press **Enter**. This will load **Package Manager**.
 
-1.  On the **Installed Add-on Products** screen, verify that **Public Cloud Module** is already installed. Then, press **F9** twice to return to the shell prompt.
+1.  On the **Installed Add-on Products** screen, verify that **Public Cloud Module** is already installed. Then, press **Ctrl+F9** twice to return to the shell prompt.
 
 1.  In the SSH session to i20-db-0, run the following to update operating system (when prompted, type **y** and press the **Enter** key):
 
@@ -437,7 +511,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
     zypper install python-azure-mgmt-compute
     ```
 
-1. Repeat the previous steps in this task on i20-db-1.
+1. Repeat the previous steps in this task on **i20-db-1**.
 
 > **Result**: After you completed this exercise, you have onfigured operating system of Azure VMs running Linux to support a highly available SAP NetWeaver deployment
 
@@ -489,7 +563,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
     passwd hacluster
     ```
 
-1.  Repeat the previous step on i20-db-1.
+1.  Repeat the previous step on **i20-db-1**.
 
 ### Task 2: Review corosync configuration
 
@@ -551,36 +625,51 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 1.  From the Azure Active Directory blade, navigate to the **App registrations** blade and then click **+ New registration**:
 
+      ![](../images/az120-4ab-30.png)
+
 1.  On the **Register an application** blade, specify the following settings, and click **Register**:
 
-    -   Name: **Stonith app**
+    -   Name: **Stonith app<inject key="DeploymentID" enableCopy="false"/>**
 
     -   Supported account type: **Accounts in this organizational directory only**
 
 1.  On the **Stonith app** blade, copy the value of **Application (client) ID** to Notepad. This will be referred to as **login_id** later in this exercise:
 
+      ![](../images/az120-4ab-31.png)
+
 1.  On the **Stonith app** blade, click **Certificates & secrets**.
+
+      ![](../images/az120-4ab-32.png)
 
 1.  On the **Stonith app - Certificates & secrets** blade, click **+ New client secret**.
 
 1.  In the **Add a client secret** pane, in the **Description** text box, type **STONITH app key**, in the **Expires** section, leave the default **Recommended: 6 months**, and then click **Add**.
 
+      ![](../images/az120-4ab-33.png)
+
 1.  Copy the resulting **Value** to Notepad (this entry is displayed only once, after you click **Add**). This will be referred to as **password** later in this exercise:
 
-
-### Task 5: Grant permissions to Azure VMs to the service principal of the STONITH app 
+      ![](../images/az120-4ab-34.png)
+      
+### Task 5: Grant permissions to Azure VMs to the service principal of the **STONITH app<inject key="DeploymentID" enableCopy="false"/>** 
 
 1.  In the Azure portal, navigate to the blade of the **i20-db-0** Azure VM
 
 1.  From the  **i20-db-0** blade, display the **i20-db-0 - Access control (IAM)** blade.
 
+      ![](../images/az120-4ab-35.png)
+
 1.  From the **i20-db-0 - Access control (IAM)** blade, add a role assignment with the following settings:
 
-    -   Role: **Virtual Machine Contributor**
+    -   Assignment type: *Leave the default setting* and click on **Next**
 
-    -   Assign access to: **Azure AD user, group, or service principal**
+    -   Role: Search and select **Virtual Machine Contributor** and click on **Next**
 
-    -   Select: **Stonith app**
+    -   Assign access to: **user, group, or service principal** and click on **+select members** and search and select **Stonith app<inject key="DeploymentID" enableCopy="false"/>** and click on **Add** and click on **Review + assign** twice to create the role assignment.
+
+      ![](../images/az120-4ab-36.png)
+      
+      ![](../images/az120-4ab-37.png)      
 
 1.  Repeat the previous steps to assign the Stonith app the Virtual Machine Contributor role to the **i20-db-1** Azure VM
 
@@ -609,6 +698,8 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 1.  Within the RDP session to az12003a-vm0, start Internet Explorer and navigate to **https://i20-db-0:7630**. This should display the SUSE Hawk sign-in page.
 
    > **Note**: Ignore **This site is not secure** message.
+   
+   ![](../images/az120-4ab-38.png)
 
 1.  On the SUSE Hawk sign in page, login by using the following credentials:
 
@@ -616,9 +707,17 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
     -   Password: **Pa55w.rd1234**
 
+      ![](../images/az120-4ab-39.png)
+
 1.  Verify that the cluster status is healthy. If you are seeing a message indicating that one of two cluster nodes is unclean, restart that node from the Azure portal.
 
 > **Result**: After you completed this exercise, you have configured clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
+
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - Click the Lab Validation icon located at the upper right corner of the lab guide section which navigates to the Lab Validation Page.
+> - Hit the Validate button for the corresponding task.If you receive a success message, you can proceed to the next task. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 
 ## Exercise 4: Remove lab resources
@@ -656,3 +755,4 @@ In this exercise, you will remove resources provisioned in this lab.
 1. Close the Cloud Shell pane.
 
 > **Result**: After you completed this exercise, you have removed the resources used in this lab.
+
