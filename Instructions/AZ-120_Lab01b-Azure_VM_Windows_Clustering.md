@@ -747,7 +747,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1.  In the Azure portal, in the Search resources, services, and docs text box at the top of the Azure portal page, type **Load balancer** then press the Enter key and select **+ Create**.
 
-1.  From the **New** blade, initiate creation of a new Azure Load Balancer with the following settings:
+1. From the **Basics** tab of the **Create load balancer** blade, specify the following settings:
+
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -760,6 +761,10 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     -   SKU: **Standard**
 
     -   Type: **Internal**
+
+    - Click on **Next: Frontend IP Configuration (7)**
+
+1. On the **Frontend IP configuration** screen, click **Add a frontend IP configuration (1)** and follow the below instructions:
 
     -   Frontend IP name: **frontend-ip1**
     
