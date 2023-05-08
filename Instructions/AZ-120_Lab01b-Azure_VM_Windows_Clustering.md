@@ -902,6 +902,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Virtual network: **adVNET (4 VM)**
 
+    -   Click on **IP Configuration** add below two Virtual machines
+
     -   VIRTUAL MACHINE: **az12001b-cl-vm0**  IP ADDRESS: **ipconfig1**
 
     -   VIRTUAL MACHINE: **az12001b-cl-vm1**  IP ADDRESS: **ipconfig1**
@@ -918,7 +920,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Interval: **5** *seconds*
 
-1.  On the **az12001b-cl-lb1** blade, click **Load balancing rules**.
+1. On the **az12001b-cl-lb1** blade, select **Load balancing rules (1)**, select **+ Add (2)**.
 
 1.  From the **az12001b-cl-lb1 - Load balancing rules** blade, add a network load balancing rule with the following settings:
 
@@ -926,7 +928,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   IP version: **IPv4**
 
-    -   Frontend IP address: *accept the default value*
+    -   Frontend IP address: *select the default value from dropdown* 
 
     -   Protocol: **TCP**
 
@@ -937,7 +939,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     -   Backend pool: **az12001b-cl-lb1-bepool (2 virtual machines)**
 
     -   Health probe:**az12001b-cl-lb1-hprobe 
-    -   
+   
     -   Protcol: **(TCP:80)**
 
     -   Session persistence: **None**
@@ -980,19 +982,21 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   You already have a Windows license?: **No**
 
-
  1. On **Disks** tab of **Create a virtual machine** blade specify the following and select **Next:Networking>**.
 
       -  OS disk type: **Standard HDD**
 
  1. On **Networking** tab of **Create a virtual machine** blade specify the following and select **Next:Managemet>**.
+      
       -   Virtual network: **adVNET**
-      -   Subnet: *a new subnet named* **bastionSubnet**
+      
+      -   Subnet: Click on **Manage subnet configuration** link, selcte **+ Subnet** and enter  **bastionSubnet**,
+     
       -   Address range: **10.0.255.0/24**
 
-     ![](../images/ex3-task1.png)
+ ![](../images/ex3-task1.png)
      
-        - and click on save
+      - and click on save
 
 1. Back on **Create a virtual machine** blade specify the following
 
@@ -1018,24 +1022,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Accelerated networking: **Off**
     
-    management
--   System assigned managed identity: **Off**
-    -   Place this virtual machine behind an existing load balancing solutions: **No**
-
-   Login with AAD credentials (Preview): **Off**
-
-    -   Enable auto-shutdown: **Off**
-
-    -   Enable backup: **Off**
-
 1. On **Management** tab of **Create a virtual machine** blade specify the following and select **Next:Monitoring>**
 
-    -   OS guest diagnostics: **Off**
-    -   Boot diagnostics: **Off**
-
-    -   OS guest diagnostics: **Off**
-
     -   System assigned managed identity: **Off**
+
+    -   Place this virtual machine behind an existing load balancing solutions: **No**
 
     -   Login with AAD credentials (Preview): **Off**
 
@@ -1043,9 +1034,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Enable backup: **Off**
 
-    -   Extensions: *None*
+1. On **Monitoring** tab of **Create a virtual machine** blade specify the following and select **Next:Monitoring>*
 
-    -   Tags: *None*
+    -   OS guest diagnostics: **Off**
+    
+    -   Boot diagnostics: **Off**
 
 1. Select **Review + Create**
 
