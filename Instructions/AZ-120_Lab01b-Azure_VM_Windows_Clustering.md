@@ -94,7 +94,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     $deploymentName = 'az1201b-' + $(Get-Date -Format 'yyyy-MM-dd-hh-mm')
     ```
 
-1.  In the Cloud Shell pane, run the following commands to set the name of the administrative user account and its password (replace the `<username>` and `<password>` placeholders with the name of the administrative user account and the value of its password, respectively):
+1.  In the Cloud Shell pane, run the following commands to set the name of the administrative user account and its password (replace the `<username>` and `<password>` placeholders with the name **Student** and the value of  password **Pa55w.rd1234** respectively):
 
     ```
     $adminUsername = '<username>'
@@ -145,9 +145,9 @@ specify the following settings:
 
     -   Size: **Standard D4s v3**
 
-    -   Username: *the same username you specified when deploying the Bicep template earlier in this exercise*
+    -   Username: **Student**
 
-    -   Password: *the same password you specified when deploying the Bicep template earlier in this exercise*
+    -   Password: **Pa55w.rd1234**
 
     -   Public inbound ports: **Allow selected ports**
 
@@ -217,9 +217,9 @@ specify the following settings:
 
     -   Size: **Standard D4s v3**
 
-    -   Username: *the same username you specified when deploying the Bicep template earlier in this exercise*
+    -   Username: **Student**
 
-    -   Password: *the same password you specified when deploying the Bicep template earlier in this exercise*
+    -   Password: **Pa55w.rd1234**
 
     -   Public inbound ports: **Allow selected ports**
 
@@ -363,7 +363,7 @@ Duration: 40 minutes
     $resourceGroupName = 'az12001b-cl-RG'
     ```
 
-1.  In the Cloud Shell pane, run the following command to join the Windows Server 2022 Azure VMs you deployed in the second task of the previous exercise to the **adatum.com** Active Directory domain (replace the `<username>` and `<password>` placeholders with the name and password of the administrative user account you specified when deploying the Bicep template in the first exercise of this lab):
+1.  In the Cloud Shell pane, run the following command to join the Windows Server 2022 Azure VMs you deployed in the second task of the previous exercise to the **adatum.com** Active Directory domain (replace the `<username>` and `<password>` placeholders with the name **Student** and password **Pa55w.rd1234**  you specified when deploying the Bicep template in the first exercise of this lab):
 
     >**Note**: Replace <Azure_region> with the region where you deployed both the VM's in previous task.
 
@@ -754,7 +754,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1.  In the Azure portal, in the Search resources, services, and docs text box at the top of the Azure portal page, type **Load balancer** then press the Enter key and select **+ Create**.
 
-1.  From the **New** blade, initiate creation of a new Azure Load Balancer with the following settings:
+1. From the **Basics** tab of the **Create load balancer** blade, specify the following settings:
+
 
     -   Subscription: *the name of your Azure subscription*
 
@@ -768,6 +769,10 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Type: **Internal**
 
+    - Click on **Next: Frontend IP Configuration (7)**
+
+1. On the **Frontend IP configuration** screen, click **Add a frontend IP configuration (1)** and follow the below instructions:
+
     -   Frontend IP name: **frontend-ip1**
     
     -   Virtual network: **adVNET**
@@ -779,10 +784,18 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     -   IP address: **10.0.1.240**
 
     -   Availability zone: **Zone-redundant**
+    
+    -  Click on **Add**
 
-1.  Wait until the load balancer is provisioned and then navigate to its blade in the Azure portal.
+1. Select **Review + create**
 
-1.  From the **az12001b-cl-lb0** blade, add a backend pool with the following settings:
+1. Review the configuration and click on **Create**.
+
+1.  Wait until the load balancer is provisioned.
+
+1. Once the deployment is done, click on **Go to resource**.
+
+1. On the **az12001b-cl-lb0** blade, select **Backend pools (1)**, click on **+ Add (2)**. 
 
     -   Name: **az12001b-cl-lb0-bepool**
 
@@ -790,12 +803,15 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Backend Pool Configuration: **IP address**
 
-    -   IP address: **10.0.1.4** Resource Name **az1201b-cl-vm0**
+    -   IP address:  Resource Name **az1201b-cl-vm0**
 
-    -   IP address: **10.0.1.5** Resource Name **az1201b-cl-vm1**
+    -   IP address:  Resource Name **az1201b-cl-vm1**
+
+   >**Note**: Please identify the private IP addresses  of VM's and select the IP Address from the dropdowm.
+
     -   Click on **Save**
 
-1.  From the **az12001b-cl-lb0** blade, add a health probe with the following settings:
+1.  On the **az12001b-cl-lb0** blade, select **Health probes (1)** select **+ Add (2)**.
 
     -   Name: **az12001b-cl-lb0-hprobe**
 
@@ -805,9 +821,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Interval: **5** *seconds*
 
-    -   Unhealthy threshold: **2** *consecutive failures*
+    -   click on **Add (5)**
 
-1.  From the **az12001b-cl-lb0** blade, add a network load balancing rule with the following settings:
+1. On the **az12001b-cl-lb0** blade, select **Load balancing rules (1)**, select **+ Add (2)**.
+
+1. On the **Add load balancing rule** blade, specify the following settings:
 
     -   Name: **az12001b-cl-lb0-lbruletcp1433**
 
@@ -832,6 +850,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     -   Idle timeout (minutes): **4**
 
     -   Floating IP (direct server return): **Enabled**
+
+    -  Click on **Save**.
 
 ### Task 3: Create and configure Azure Load Balancers handling outbound traffic
 
@@ -889,6 +909,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Virtual network: **adVNET (4 VM)**
 
+    -   Click on **IP Configuration** add below two Virtual machines
+
     -   VIRTUAL MACHINE: **az12001b-cl-vm0**  IP ADDRESS: **ipconfig1**
 
     -   VIRTUAL MACHINE: **az12001b-cl-vm1**  IP ADDRESS: **ipconfig1**
@@ -905,7 +927,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Interval: **5** *seconds*
 
-1.  On the **az12001b-cl-lb1** blade, click **Load balancing rules**.
+1. On the **az12001b-cl-lb1** blade, select **Load balancing rules (1)**, select **+ Add (2)**.
 
 1.  From the **az12001b-cl-lb1 - Load balancing rules** blade, add a network load balancing rule with the following settings:
 
@@ -913,7 +935,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   IP version: **IPv4**
 
-    -   Frontend IP address: *accept the default value*
+    -   Frontend IP address: *select the default value from dropdown* 
 
     -   Protocol: **TCP**
 
@@ -924,7 +946,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     -   Backend pool: **az12001b-cl-lb1-bepool (2 virtual machines)**
 
     -   Health probe:**az12001b-cl-lb1-hprobe 
-    -   
+   
     -   Protcol: **(TCP:80)**
 
     -   Session persistence: **None**
@@ -957,9 +979,9 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Size: **Standard DS1 v2*** or similar*
 
-    -   Username: *the same username you specified when deploying the Bicep template in the first exercise of this lab*
+    -   Username: **Student**
 
-    -   Password: *the same password you specified when deploying the Bicep template in the first exercise of this lab*
+    -   Password: **Pa55w.rd1234**
 
     -   Public inbound ports: **Allow selected ports**
 
@@ -967,19 +989,21 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   You already have a Windows license?: **No**
 
-
  1. On **Disks** tab of **Create a virtual machine** blade specify the following and select **Next:Networking>**.
 
       -  OS disk type: **Standard HDD**
 
  1. On **Networking** tab of **Create a virtual machine** blade specify the following and select **Next:Managemet>**.
+      
       -   Virtual network: **adVNET**
-      -   Subnet: *a new subnet named* **bastionSubnet**
+      
+      -   Subnet: Click on **Manage subnet configuration** link, selcte **+ Subnet** and enter  **bastionSubnet**,
+     
       -   Address range: **10.0.255.0/24**
 
-     ![](../images/ex3-task1.png)
+      ![](../images/ex3-task1.png)
      
-        - and click on save
+      - and click on save
 
 1. Back on **Create a virtual machine** blade specify the following
 
@@ -1005,24 +1029,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Accelerated networking: **Off**
     
-    management
--   System assigned managed identity: **Off**
-    -   Place this virtual machine behind an existing load balancing solutions: **No**
-
-   Login with AAD credentials (Preview): **Off**
-
-    -   Enable auto-shutdown: **Off**
-
-    -   Enable backup: **Off**
-
 1. On **Management** tab of **Create a virtual machine** blade specify the following and select **Next:Monitoring>**
 
-    -   OS guest diagnostics: **Off**
-    -   Boot diagnostics: **Off**
-
-    -   OS guest diagnostics: **Off**
-
     -   System assigned managed identity: **Off**
+
+    -   Place this virtual machine behind an existing load balancing solutions: **No**
 
     -   Login with AAD credentials (Preview): **Off**
 
@@ -1030,9 +1041,11 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Enable backup: **Off**
 
-    -   Extensions: *None*
+1. On **Monitoring** tab of **Create a virtual machine** blade specify the following:
 
-    -   Tags: *None*
+    -   OS guest diagnostics: **Off**
+    
+    -   Boot diagnostics: **Off**
 
 1. Select **Review + Create**
 
@@ -1040,7 +1053,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1.  Connect to the newly provisioned Azure VM via RDP. 
 
-1.  Within the RDP session to az12001b-vm2, ensure that you can establish RDP session to both az12001b-cl-vm0 and az12001b-cl-vm1 via their private IP addresses (10.0.1.4 and 10.0.1.5, respectively). 
+1.  Within the RDP session to az12001b-vm2, ensure that you can establish RDP session to both az12001b-cl-vm0 and az12001b-cl-vm1 via their private IP addresses  respectively. 
 
 > **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP NetWeaver deployments
 
