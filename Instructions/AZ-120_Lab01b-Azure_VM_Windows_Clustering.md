@@ -210,9 +210,9 @@ specify the following settings:
 
     -   Size: **Standard D4s v3**
 
-    -   Username: *the same username you specified when deploying the Bicep template earlier in this exercise*
+    -   Username: **Student**
 
-    -   Password: *the same password you specified when deploying the Bicep template earlier in this exercise*
+    -   Password: **Pa55w.rd1234**
 
     -   Public inbound ports: **Allow selected ports**
 
