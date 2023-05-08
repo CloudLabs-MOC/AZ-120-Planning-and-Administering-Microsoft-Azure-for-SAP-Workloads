@@ -356,7 +356,7 @@ Duration: 40 minutes
     $resourceGroupName = 'az12001b-cl-RG'
     ```
 
-1.  In the Cloud Shell pane, run the following command to join the Windows Server 2022 Azure VMs you deployed in the second task of the previous exercise to the **adatum.com** Active Directory domain (replace the `<username>` and `<password>` placeholders with the name and password of the administrative user account you specified when deploying the Bicep template in the first exercise of this lab):
+1.  In the Cloud Shell pane, run the following command to join the Windows Server 2022 Azure VMs you deployed in the second task of the previous exercise to the **adatum.com** Active Directory domain (replace the `<username>` and `<password>` placeholders with the name **Student** and password **Pa55w.rd1234**  you specified when deploying the Bicep template in the first exercise of this lab):
 
     >**Note**: Replace <Azure_region> with the region where you deployed both the VM's in previous task.
 
