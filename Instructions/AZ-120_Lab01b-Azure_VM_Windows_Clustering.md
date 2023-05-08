@@ -800,7 +800,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   IP address:  Resource Name **az1201b-cl-vm1**
 
-   >**Note**: Please identify the IP Address of VM's and select the IP Address from the dropdowm.
+   >**Note**: Please identify the private IP addresses  of VM's and select the IP Address from the dropdowm.
 
     -   Click on **Save**
 
@@ -994,7 +994,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
      
       -   Address range: **10.0.255.0/24**
 
- ![](../images/ex3-task1.png)
+      ![](../images/ex3-task1.png)
      
       - and click on save
 
@@ -1034,7 +1034,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     -   Enable backup: **Off**
 
-1. On **Monitoring** tab of **Create a virtual machine** blade specify the following and select **Next:Monitoring>*
+1. On **Monitoring** tab of **Create a virtual machine** blade specify the following:
 
     -   OS guest diagnostics: **Off**
     
@@ -1046,7 +1046,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1.  Connect to the newly provisioned Azure VM via RDP. 
 
-1.  Within the RDP session to az12001b-vm2, ensure that you can establish RDP session to both az12001b-cl-vm0 and az12001b-cl-vm1 via their private IP addresses (10.0.1.4 and 10.0.1.5, respectively). 
+1.  Within the RDP session to az12001b-vm2, ensure that you can establish RDP session to both az12001b-cl-vm0 and az12001b-cl-vm1 via their private IP addresses  respectively. 
 
 > **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP NetWeaver deployments
 
