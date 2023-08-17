@@ -4,7 +4,7 @@ Estimated Time: 100 minutes
 
 This particular lab is under the module Deploy SAP on Azure
 
-## Scenario
+## Lab scenario
   
 In preparation for deployment of SAP NetWeaver on Azure, Adatum Corporation wants to implement a demo that will illustrate highly available implementation of SAP NetWeaver on Azure VMs running the SUSE distribution of Linux.
 
@@ -29,7 +29,7 @@ Duration: 30 minutes
 
 In this exercise, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure VMs running Linux SUSE in the same availability set.
 
-## Task 1: Create a virtual network that will host a highly available SAP NetWeaver deployment.
+## Task 1: Create a virtual network that will host a highly available SAP NetWeaver deployment
 
 1.  In the Azure Portal, start a Bash session in Cloud Shell. 
 
@@ -240,7 +240,7 @@ Duration: 30 minutes
 
 In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Server to accommodate a highly available SAP NetWeaver deployment.
 
-## Task 1: Configure networking of the database tier Azure VMs.
+## Task 1: Configure networking of the database tier Azure VMs
 
    > **Note**: Before you start this task, ensure that the template deployments you initiated in the previous exercise have successfully completed. 
 
@@ -285,7 +285,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
     ![](../images/az120-4ab-21.png)
 
 
-## Task 2: Connect to the database tier Azure VMs.
+## Task 2: Connect to the database tier Azure VMs
 
 1.  From the lab computer, in the Azure portal, navigate to the **az12003a-vm0** blade.
 
@@ -328,7 +328,7 @@ In this exercise, you will configure Azure VMs running SUSE Linux Enterprise Ser
 1.  Use PuTTY to connect via SSH to **i20-db-1** Azure VM with the same credentials.
 
 
-## Task 3: Examine the storage configuration of the database tier Azure VMs.
+## Task 3: Examine the storage configuration of the database tier Azure VMs
 
 1.  From within the PuTTY SSH session to i20-db-0 Azure VM, run the following command to elevate privileges: 
 
@@ -693,8 +693,18 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 > **Result**: After you completed this exercise, you have configured clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
 
 > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-> - Click the Lab Validation icon located at the upper right corner of the lab guide section which navigates to the Lab Validation Page.
-> - Hit the Validate button for the corresponding task.If you receive a success message, you can proceed to the next task. 
-> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-> - If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
+- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+
+## Review
+
+In this lab, you have:
+
+- Provisioned Azure resources necessary to support a highly available SAP NetWeaver deployment
+- Configured operating system of Azure VMs running Linux to support a highly available SAP NetWeaver deployment
+- Configured clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
+
+## You have successfully completed the lab
 

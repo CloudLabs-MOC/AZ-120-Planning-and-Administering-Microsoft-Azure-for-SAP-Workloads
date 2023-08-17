@@ -1,11 +1,10 @@
-
 # Lab 2: Implement Windows clustering on Azure VMs
 
 Estimated Time: 120 minutes
 
 This particular lab is under the module Explore the foundations of IaaS for SAP on Azure
 
-## Scenario
+## Lab scenario
   
 In preparation for the deployment of SAP NetWeaver on Azure, with SQL Server as the database management system, Adatum Corporation wants to explore the process of implementing clustering on Azure VMs running Windows Server 2022.
 
@@ -13,11 +12,11 @@ In preparation for the deployment of SAP NetWeaver on Azure, with SQL Server as 
   
 After completing this lab, you will be able to:
 
--   Provision Azure compute resources necessary to support highly available SAP NetWeaver deployments.
+- Provision Azure compute resources necessary to support highly available SAP NetWeaver deployments.
 
--   Configure the operating system of Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver deployment.
+- Configure the operating system of Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver deployment.
 
--   Provision Azure network resources necessary to support highly available SAP NetWeaver deployments.
+- Provision Azure network resources necessary to support highly available SAP NetWeaver deployments.
 
 ## Architecture Diagram
 
@@ -85,7 +84,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     - in the Azure portal, navigate to the **az12001b-ad-RG** resource group blade, select **Deployments**, select the link to the failed deployment, and select **Redeploy**, select the target resource group (**az12001b-ad-RG**) and provide the password for the root account (**Pa55w.rd1234**).
 
 
-## Task 2: Deploy a pair of Azure VMs running Windows Server 2022 in a new availability set.
+## Task 2: Deploy a pair of Azure VMs running Windows Server 2022 in a new availability set
 
 1. On Azure portal **Home** page, search for **Virtual machines (1)** and select it **(2)**.
 
@@ -390,7 +389,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 Duration: 40 minutes
 
-## Task 1: Join Windows Server 2022 Datacenter VMs to the Active Directory domain.
+## Task 1: Join Windows Server 2022 Datacenter VMs to the Active Directory domain
 
    > **Note**: Before you start this task, ensure that the template deployment you initiated in the last task of the previous exercise has successfully completed. 
 
@@ -436,7 +435,7 @@ Duration: 40 minutes
 1.  Wait for the script to complete before proceeding to the next task.
 
 
-## Task 2: Configure storage on Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver installation.
+## Task 2: Configure storage on Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver installation
 
 1.  In the Azure Portal, navigate to the blade of the virtual virtual machine **az12001b-cl-vm0**, which you provisioned in the first exercise of this lab.
 
@@ -619,7 +618,7 @@ Duration: 40 minutes
 
 14.  Repeat the previous step in this task to configure storage on az12001b-cl-vm1.
 
-## Task 3: Prepare for configuration of Failover Clustering on Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver installation.
+## Task 3: Prepare for configuration of Failover Clustering on Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver installation
 
 1.  Within the RDP session to az12001b-cl-vm0, start a Windows PowerShell ISE session and install Failover Clustering and Remote Administrative tools features on both az12001b-cl-vm0 and az12001b-cl-vm1 by running the following:
 
@@ -669,7 +668,7 @@ Duration: 40 minutes
 
 1.  Click on **Create**.
 
-## Task 4: Configure Failover Clustering on Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver installation.
+## Task 4: Configure Failover Clustering on Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver installation
 
 1.  In the Azure Portal, navigate to the blade of the virtual virtual machine **az12001b-cl-vm0**, which you provisioned in the first exercise of this lab.
 
@@ -1120,3 +1119,18 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 > **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP NetWeaver deployments
 
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
+- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+
+## Review
+
+In this lab, you have:
+
+- Provisioned Azure compute resources necessary to support highly available SAP NetWeaver deployments.
+- Configured the operating system of Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver deployment.
+- Provisioned Azure network resources necessary to support highly available SAP NetWeaver deployments.
+
+## You have successfully completed the lab
