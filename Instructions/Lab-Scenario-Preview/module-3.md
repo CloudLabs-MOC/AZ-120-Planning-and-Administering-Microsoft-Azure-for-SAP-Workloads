@@ -2,7 +2,7 @@
 
 # Lab 03: Implement SAP architecture on Azure VMs running Linux
 
-## Lab overview
+### Lab overview
   
 In preparation for deployment of SAP NetWeaver on Azure, Adatum Corporation wants to implement a demo that will illustrate highly available implementation of SAP NetWeaver on Azure VMs running the SUSE distribution of Linux.
 
