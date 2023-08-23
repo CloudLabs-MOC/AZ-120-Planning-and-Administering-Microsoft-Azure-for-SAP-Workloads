@@ -5,7 +5,7 @@ Estimated Time: 150 minutes
 This particular lab is under the module Deploy SAP on Azure
 
 
-## Scenario
+## Lab scenario
   
 In preparation for deployment of SAP NetWeaver on Azure, Adatum Corporation wants to implement a demo that will illustrate highly available implementation of SAP NetWeaver on Azure VMs running Windows Server 2016.
 
@@ -781,5 +781,19 @@ In this task, you will set share-level permissions on the **\\\\GLOBALHOST\\sapm
 
 > **Result**: After you completed this exercise, you have configured operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
+- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
+## Review
+
+In this lab, you have:
+
+- Provisioned Azure resources necessary to support a highly available SAP NetWeaver deployment
+- Configured operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
+- Configured clustering on Azure VMs running Windows to support a highly available SAP NetWeaver deployment
+
+## You have successfully completed the lab
 
