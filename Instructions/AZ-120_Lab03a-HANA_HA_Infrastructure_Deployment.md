@@ -1,7 +1,5 @@
 # Lab 03: Implement SAP architecture on Azure VMs running Linux
 
-Estimated Time: 100 minutes
-
 This particular lab is under the module Deploy SAP on Azure
 
 ## Lab scenario
@@ -18,6 +16,7 @@ After completing this lab, you will be able to:
 
 -   Configure clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
 
+## Estimated timing: 120 minutes
 
 ## Architecture Diagram
 
