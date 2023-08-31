@@ -1,7 +1,5 @@
 # Lab 2: Implement Windows clustering on Azure VMs
 
-Estimated Time: 120 minutes
-
 This particular lab is under the module Explore the foundations of IaaS for SAP on Azure
 
 ## Lab scenario
@@ -17,6 +15,8 @@ After completing this lab, you will be able to:
 - Configure the operating system of Azure VMs running Windows Server 2022 to support a highly available SAP NetWeaver deployment.
 
 - Provision Azure network resources necessary to support highly available SAP NetWeaver deployments.
+
+## Estimated timing: 120 minutes
 
 ## Architecture Diagram
 
