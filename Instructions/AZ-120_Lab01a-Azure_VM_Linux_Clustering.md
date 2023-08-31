@@ -1,7 +1,5 @@
 # Lab 1: Implement Linux clustering on Azure VMs
 
-Estimated Time: 90 minutes
-
 This particular lab is under the module Explore the foundations of IaaS for SAP on Azure
 
 ## Lab scenario
@@ -17,6 +15,8 @@ After completing this lab, you will be able to:
 - Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation
 
 - Provision Azure network resources necessary to support highly available SAP HANA deployments
+
+## Estimated timing: 90 minutes
 
 ## Architecture Diagram
 
