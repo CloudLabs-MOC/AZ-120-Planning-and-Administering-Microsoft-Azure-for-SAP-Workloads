@@ -1,7 +1,5 @@
 # Lab 04: Implement SAP architecture on Azure VMs running Windows
 
-Estimated Time: 150 minutes
-
 This particular lab is under the module Deploy SAP on Azure
 
 
@@ -18,6 +16,8 @@ After completing this lab, you will be able to:
 -   Configure operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
 -   Configure clustering on Azure VMs running Windows to support a highly available SAP NetWeaver deployment
+
+## Estimated timing: 150 minutes
 
 ## Architecture Diagram
 
