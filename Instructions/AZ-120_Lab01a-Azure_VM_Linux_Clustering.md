@@ -1,34 +1,32 @@
 # Lab 1: Implement Linux clustering on Azure VMs
 
-This particular lab is under the module Explore the foundations of IaaS for SAP on Azure
-
 ## Lab scenario
-  
+
+This particular lab is under the module Explore the foundations of IaaS for SAP on Azure.
+
 In preparation for deployment of SAP HANA on Azure, Adatum Corporation wants to explore the process of implementing clustering on Azure VMs running the SUSE distribution of Linux.
 
-## Objectives
+## Lab objectives
   
 After completing this lab, you will be able to:
 
-- Provision Azure compute resources necessary to support highly available SAP HANA deployments
+- Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments.
 
-- Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation
+- Exercise 2: Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation.
 
-- Provision Azure network resources necessary to support highly available SAP HANA deployments
+- Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments.
 
-## Estimated timing: 90 minutes
+## Estimated Duration: 90 minutes
 
 ## Architecture Diagram
 
 ![](../images/1.md/m1.png)
 
-# Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
-
-Duration: 30 minutes
+### Exercise 1: Provision Azure compute resources necessary to support highly available SAP HANA deployments
 
 In this exercise, you will deploy Azure infrastructure compute components necessary to configure Linux clustering. This will involve creating a pair of Azure VMs running Linux SUSE in the same availability set.
 
-## Task 1: Deploy Azure VMs running Linux SUSE
+#### Task 1: Deploy Azure VMs running Linux SUSE
 
 1. Type **Proximity placement (1)** groups in the search box of the Azure portal menu, and select it **(2)**.
 
@@ -245,13 +243,13 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1. On the **Review + create** tab of the **Create a virtual machine** blade, select **Create**.
 
-    ![](../images/1.md/create.png)
+   ![](../images/1.md/create.png)
 
-    > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
+   > **Note**: Wait for the provisioning to complete. This should take less about 3 minutes.
 
 
 
-## Task 2: Create and configure Azure VMs disks
+#### Task 2: Create and configure Azure VMs disks
 
 1. Open a Cloud Shell prompt by selecting the icon shown below. 
 
@@ -267,16 +265,16 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     
 1. Follow the below instructions to create storage account: 
 
-    - Resource group : Choose **labvm-rg (1)** from the drop down
-    - Storage account : Enter **stacc<inject key="Deployment ID" enableCopy="false"/> (2)**
-    - File share : Enter **blob (3)**
-    - Click on **Create storage (4)**
+   - Resource group : Choose **labvm-rg (1)** from the drop down
+   - Storage account : Enter **stacc<inject key="Deployment ID" enableCopy="false"/> (2)**
+   - File share : Enter **blob (3)**
+   - Click on **Create storage (4)**
 
-    ![](../images/1.md/createstorage.png)
+   ![](../images/1.md/createstorage.png)
     
 1. Once complete, you will see a prompt similar to the one below. Verify that the upper left corner of the Cloud Shell screen shows Bash.
 
-     ![Picture 1](../images/bash.png)
+   ![Picture 1](../images/bash.png)
    
 1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous task:
 
@@ -342,13 +340,11 @@ In this exercise, you will deploy Azure infrastructure compute components necess
   > **Result**: After you completed this exercise, you have provisioned Azure compute resources necessary to support highly available SAP HANA deployments.
 
 
-# Exercise 2: Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation
-
-Duration: 30 minutes
+### Exercise 2: Configure operating system of Azure VMs running Linux to support a highly available SAP HANA installation
 
 In this exercise, you will configure operating system and storage on Azure VMs running SUSE Linux Enterprise Server to accommodate clustered installations of SAP HANA.
 
-## Task 1: Connect to Azure Linux VMs
+#### Task 1: Connect to Azure Linux VMs
 
 1. In the Cloud Shell pane, run the following command to set the value of the variable `RESOURCE_GROUP_NAME` to the name of the resource group containing the resources you provisioned in the previous exercise:
 
@@ -389,7 +385,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
    ```
    
 
-## Task 2: Configure storage of Azure VMs running Linux
+#### Task 2: Configure storage of Azure VMs running Linux
 
 1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, run the following command to elevate privileges: 
 
@@ -517,7 +513,7 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 1. Switch to the Cloud Shell Bash session to az12001a-vm1 and repeat all of the steps in this tasks to configure storage on **az12001a-vm1**.
 
 
-## Task 3: Enable cross-node password-less SSH access
+#### Task 3: Enable cross-node password-less SSH access
 
 1. In the Cloud Shell pane, in the SSH session to az12001a-vm0, generate passphrase-less SSH key by running:
 
@@ -659,14 +655,12 @@ In this exercise, you will configure operating system and storage on Azure VMs r
 > **Result**: After you completed this exercise, you have configured operating system of Azure VMs running Linux to support a highly available SAP HANA installation
 
 
-# Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
-
-Duration: 30 minutes
+### Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments
 
 In this exercise, you will implement Azure Load Balancers to accommodate clustered installations of SAP HANA.
 
 
-## Task 1: Configure Azure VMs to facilitate load balancing setup.
+#### Task 1: Configure Azure VMs to facilitate load balancing setup.
 
    > **Note**: Since you will be setting up a pair of Azure Load Balancer of the Stardard SKU, you need to first remove the public IP addresses associated with network adapters of two Azure VMs that will be serving as the load-balanced backend pool.
 
@@ -720,7 +714,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
     ![](../images/1.md/savechanges2.png)
     
-### Task 2: Create and configure Azure Load Balancers handling inbound traffic
+#### Task 2: Create and configure Azure Load Balancers handling inbound traffic
 
 1. From Azure Portal **Home** page, search for **Load balancer** and select it from the list **(2)**.
 
@@ -849,7 +843,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
       [](../images/1.md/addlbrules.png)
 
-## Task 3: Create and configure Azure Load Balancers handling outbound traffic
+#### Task 3: Create and configure Azure Load Balancers handling outbound traffic
 
 1. In the Azure Portal, start a Bash session in Cloud Shell. 
 
@@ -910,7 +904,7 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
         ![Picture 1](../images/azbp.png)
    
 
-## Task 4: Deploy a jump host
+#### Task 4: Deploy a jump host
 
    > **Note**: Since two clustered Azure VMs are no longer directly accessible from Internet, you will deploy an Azure VM running Windows Server 2019 Datacenter that will serve as a jump host. 
 
@@ -1009,4 +1003,4 @@ In this lab, you have:
 - Configured operating system of Azure VMs running Linux to support a highly available SAP HANA installation.
 - Provisioned Azure network resources necessary to support highly available SAP HANA deployments.
 
-## You have successfully completed the lab
+## You have successfully completed the lab.

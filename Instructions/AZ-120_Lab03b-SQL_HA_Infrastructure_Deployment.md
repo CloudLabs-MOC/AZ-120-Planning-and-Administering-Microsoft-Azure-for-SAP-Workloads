@@ -1,35 +1,32 @@
 # Lab 04: Implement SAP architecture on Azure VMs running Windows
 
-This particular lab is under the module Deploy SAP on Azure
-
-
 ## Lab scenario
-  
+
+This particular lab is under the module Deploy SAP on Azure.
+
 In preparation for deployment of SAP NetWeaver on Azure, Adatum Corporation wants to implement a demo that will illustrate highly available implementation of SAP NetWeaver on Azure VMs running Windows Server 2016.
 
-## Objectives
+## Lab objectives
   
 After completing this lab, you will be able to:
 
--   Provision Azure resources necessary to support a highly available SAP NetWeaver deployment
+- Exercise 1: Provision Azure resources necessary to support a highly available SAP NetWeaver deployment
 
--   Configure operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
+- Exercise 2: Configure operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
--   Configure clustering on Azure VMs running Windows to support a highly available SAP NetWeaver deployment
+- Exercise 3: Configure clustering on Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
-## Estimated timing: 150 minutes
+## Estimated Duration: 150 minutes
 
 ## Architecture Diagram
 
   ![](../images/4.md/m4.png)
 
-# Exercise 1: Provision Azure resources necessary to support highly available SAP NetWeaver deployments
-
-Duration: 60 minutes
+### Exercise 1: Provision Azure resources necessary to support highly available SAP NetWeaver deployments
 
 In this exercise, you will deploy Azure infrastructure compute components necessary to configure Windows clustering. This will involve creating a pair of Azure VMs running Windows Server 2016 in the same availability set.
 
-## Task 1: Deploy a pair of Azure VMs running highly available Active Directory domain controllers by using an Azure Resource Manager template
+#### Task 1: Deploy a pair of Azure VMs running highly available Active Directory domain controllers by using an Azure Resource Manager template
 
 1.  Type **Deploy a custom template (1)** in the search box of the Azure portal menu, and select it **(2)**.
 
@@ -70,7 +67,8 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     
      ![](../images/3.md/customdeployment.png)
 
-1. Review the configuration and click on **Create**
+1. Review the configuration and click on **Create**.
+
     > **Note**: The deployment should take about 35 minutes. Wait for the deployment to complete before you proceed to the next task.
 
     > **Note**: If the deployment fails with the **Conflict** error message during deployment of the CustomScriptExtension component, use the following steps  to remediate this issue:
@@ -128,7 +126,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
     
     > **Note**: These additional steps disable IPv6 which causes in this case name resolution issues and, subsequently, force replication between the two domain controllers.  
 
-## Task 2: Provision subnets that will host Azure VMs running highly available SAP NetWeaver deployment and the S2D cluster.
+#### Task 2: Provision subnets that will host Azure VMs running highly available SAP NetWeaver deployment and the S2D cluster.
 
 1.  In the Azure Portal, navigate to the blade of the **az12003b-ad-RG** resource group and click on **adVNET** virtual network
 
@@ -186,7 +184,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  Copy the resulting value to Clipboard. You will need it in the next task.
 
-## Task 3: Deploy Azure Resource Manager template provisioning Azure VMs running Windows Server 2016 that will host a highly available SAP NetWeaver deployment
+#### Task 3: Deploy Azure Resource Manager template provisioning Azure VMs running Windows Server 2016 that will host a highly available SAP NetWeaver deployment
 
 1.  Type **Deploy a custom template (1)** in the search box of the Azure portal menu, and select it **(2)**.
 
@@ -244,7 +242,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
 
 1.  Do not wait for the deployment to complete but instead proceed to the next task. 
 
-## Task 4: Deploy the Scale-Out File Server (SOFS) cluster
+#### Task 4: Deploy the Scale-Out File Server (SOFS) cluster
 
 In this task, you will deploy the scale-out file server (SOFS) cluster that will be hosting a file share for the SAP ASCS servers by using an Azure Resource Manager QuickStart template from GitHub available at [**https://github.com/polichtm/301-storage-spaces-direct-md**](https://github.com/polichtm/301-storage-spaces-direct-md). 
 
@@ -339,7 +337,7 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
        
      - Rerun the steps of the current task from the beginninig
 
-## Task 5: Deploy a jump host
+#### Task 5: Deploy a jump host
 
    > **Note**: Since Azure VMs you deployed in the previous task are not accessible from Internet, you will deploy an Azure VM running Windows Server 2016 Datacenter that will serve as a jump host. 
 
@@ -445,13 +443,11 @@ In this task, you will deploy the scale-out file server (SOFS) cluster that will
 > **Result**: After you completed this exercise, you have provisioned Azure resources necessary to support highly available SAP NetWeaver deployments
 
 
-# Exercise 2: Configure operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
-
-Duration: 60 minutes
+### Exercise 2: Configure operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
 In this exercise, you will configure operating system of Azure VMs running Windows Server to accommodate a highly available SAP NetWeaver deployment.
 
-## Task 1: Join Windows Server 2016 Azure VMs to the Active Directory domain.
+#### Task 1: Join Windows Server 2016 Azure VMs to the Active Directory domain.
 
    > **Note**: Before you start this task, ensure that the template deployments you initiated in the previous exercise have successfully completed. 
 
@@ -486,7 +482,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
     foreach ($vmName in $vmNames) { Set-AzVMExtension -ResourceGroupName $resourceGroupName -ExtensionType 'JsonADDomainExtension' -Name 'joindomain' -Publisher "Microsoft.Compute" -TypeHandlerVersion "1.0" -Vmname $vmName -Location $location -SettingString $settingString -ProtectedSettingString $protectedSettingString }
     ```
 
-## Task 2: Examine the storage configuration of the database tier Azure VMs.
+#### Task 2: Examine the storage configuration of the database tier Azure VMs.
 
 1.  Navigate to the **az12003b-vm0** blade, click on **Connect (1)** and click on **Download RDP File (2)**.
 
@@ -518,7 +514,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
      ![](../images/3.md/vmdb1.png)
      
-## Task 3: Prepare for configuration of Failover Clustering on Azure VMs running Windows Server 2016 to support a highly available SAP NetWeaver installation.
+#### Task 3: Prepare for configuration of Failover Clustering on Azure VMs running Windows Server 2016 to support a highly available SAP NetWeaver installation.
 
 1.  Within the RDP session to i20-db-0.adatum.com, start a Windows PowerShell ISE session and install Failover Clustering and Remote Administrative tools features by running the following on the pair of the ASCS and DB servers that will become nodes of the ASCS and SQL Server clusters, respectively:
 
@@ -571,7 +567,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
     ![](../images/3.md/createstacc.png)
 
    
-## Task 4: Configure Failover Clustering on Azure VMs running Windows Server 2016 to support a highly available database tier of the SAP NetWeaver installation.
+#### Task 4: Configure Failover Clustering on Azure VMs running Windows Server 2016 to support a highly available database tier of the SAP NetWeaver installation.
 
 1.  If needed, from the RDP session to az12003b-vm0, use Remote Desktop to re-connect to **i20-db-0.adatum.com** Azure VM. When prompted, provide the following credentials:
 
@@ -652,7 +648,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 1.  In the **Failover Cluster Manager** console, review the **az12003b-db-cl0** cluster configuration, including its nodes, as well as its witness and network settings. Notice that the cluster does not have any shared storage.
 
 
-## Task 6: Configure Failover Clustering on Azure VMs running Windows Server 2016 to support a highly available ASCS tier of the SAP NetWeaver installation.
+#### Task 6: Configure Failover Clustering on Azure VMs running Windows Server 2016 to support a highly available ASCS tier of the SAP NetWeaver installation.
 
 > **Note**: Ensure that the deployment of the S2D cluster you initiated in task 4 of exercise 1 has successfully completed before starting this task.
 
@@ -735,7 +731,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 1.  In the **Failover Cluster Manager** console, review the **az12003b-ascs-cl0** cluster configuration, including its nodes, as well as is witness and network settings. Notice that the cluster does not have any shared storage.
 
 
-## Task 7: Set permissions on the \\\\GLOBALHOST\\sapmnt share
+#### Task 7: Set permissions on the \\\\GLOBALHOST\\sapmnt share
 
 In this task, you will set share-level permissions on the **\\\\GLOBALHOST\\sapmnt** share.
 
@@ -750,7 +746,7 @@ In this task, you will set share-level permissions on the **\\\\GLOBALHOST\\sapm
    
     ```
 
-## Task 8: Configure operating system prerequisites for installing SAP NetWeaver ASCS and database components
+#### Task 8: Configure operating system prerequisites for installing SAP NetWeaver ASCS and database components
 
 1.  Within the Remote Desktop session to i20-ascs-0.adatum.com, from the Windows PowerShell ISE session, run the following to configure registry entries required to faciliate the installation of SAP ASCS components and the use of virtual names:
 
@@ -795,5 +791,5 @@ In this lab, you have:
 - Configured operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 - Configured clustering on Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
-## You have successfully completed the lab
+## You have successfully completed the lab.
 
