@@ -16,7 +16,7 @@ After completing this lab, you will be able to:
 
 - Exercise 3: Provision Azure network resources necessary to support highly available SAP HANA deployments.
 
-## Estimated Duration: 90 minutes
+## Estimated timing: 90 minutes
 
 ## Architecture Diagram
 
