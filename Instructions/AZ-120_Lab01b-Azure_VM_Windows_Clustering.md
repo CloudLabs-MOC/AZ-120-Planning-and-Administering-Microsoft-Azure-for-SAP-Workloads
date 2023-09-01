@@ -16,7 +16,7 @@ After completing this lab, you will be able to:
 
 - Exercise 3: Provision Azure network resources necessary to support highly available SAP NetWeaver deployments.
 
-## Estimated Duration: 120 minutes
+## Estimated timing: 120 minutes
 
 ## Architecture Diagram
 
