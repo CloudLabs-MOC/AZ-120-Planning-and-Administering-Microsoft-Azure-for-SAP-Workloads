@@ -1,0 +1,16 @@
+[
+    {
+     "Name": "Implement Linux clustering on Azure VMs",
+     "Language": "English",
+     "Files": [
+         {
+           "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/prod/Instructions/getstartepage.md",
+           "Order": 1
+         },
+       {
+           "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/prod/Instructions/AZ-120_Lab01a-Azure_VM_Linux_Clustering.md",
+           "Order": 2
+         }
+      ]  
+    } 
+ ]

@@ -18,6 +18,8 @@ After completing this lab, you will be able to:
 
 ## Estimated Duration: 90 minutes
 
+## Estimated timing: 90 minutes
+
 ## Architecture Diagram
 
 ![](../images/1.md/m1.png)
