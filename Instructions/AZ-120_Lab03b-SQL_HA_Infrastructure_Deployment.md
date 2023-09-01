@@ -16,7 +16,7 @@ After completing this lab, you will be able to:
 
 - Exercise 3: Configure clustering on Azure VMs running Windows to support a highly available SAP NetWeaver deployment
 
-## Estimated Duration: 150 minutes
+## Estimated timing: 150 minutes
 
 ## Architecture Diagram
 
