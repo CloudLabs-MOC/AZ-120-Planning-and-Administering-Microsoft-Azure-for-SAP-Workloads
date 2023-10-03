@@ -94,7 +94,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
      
         ![Picture 1](../images/1.md/createas.png)
      
-   -  Security type: Leave it as **Default (12)**
+   -  Security type: Choose **Standard (12)**
    
    - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1 (13)**
    
