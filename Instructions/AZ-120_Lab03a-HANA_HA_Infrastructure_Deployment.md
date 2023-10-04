@@ -666,10 +666,10 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 1.  Within the RDP session to az12003a-vm0, start Internet Explorer and navigate to **https://i20-db-0:7630**. This should display the SUSE Hawk sign-in page.
 
-   > **Note**: Ignore **This site is not secure** message.
-   
-   ![](../images/az120-4ab-38.png)
+     ![](../images/az120-4ab-38.png)
 
+     > **Note**: Ignore **This site is not secure** message.
+     
 1.  On the SUSE Hawk sign in page, login by using the following credentials:
 
     -   Username: **hacluster**
@@ -680,13 +680,13 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 1.  Verify that the cluster status is healthy. If you are seeing a message indicating that one of two cluster nodes is unclean, restart that node from the Azure portal.
 
-> **Result**: After you completed this exercise, you have configured clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
+    > **Result**: After you completed this exercise, you have configured clustering on Azure VMs running Linux to support a highly available SAP NetWeaver deployment
 
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+    >- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
+    >- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    >- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    >- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 ## Review
 
