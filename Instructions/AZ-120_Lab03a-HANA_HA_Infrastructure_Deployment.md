@@ -593,9 +593,9 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 
 #### Task 4: Create an Azure AD application for the STONITH device
 
-1.  In the Azure portal, navigate to the Azure Active Directory blade.
+1.  In the Azure portal, navigate to the Microsoft Entra blade.
 
-1.  From the Azure Active Directory blade, navigate to the **App registrations** blade and then click **+ New registration**:
+1.  From the Microsoft Entra blade, navigate to the **App registrations** blade and then click **+ New registration**:
 
     ![](../images/az120-4ab-30.png)
 
