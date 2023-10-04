@@ -591,7 +591,7 @@ In this exercise, you will configure clustering on Azure VMs running Linux to su
 1.  Copy the resulting values to Notepad. You will need it in the next task.
 
 
-#### Task 4: Create an Azure AD application for the STONITH device
+#### Task 4: Create a Microsoft Entra ID application for the STONITH device
 
 1.  In the Azure portal, navigate to the Microsoft Entra blade.
 
