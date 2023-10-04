@@ -94,7 +94,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
      
         ![Picture 1](../images/1.md/createas.png)
      
-   -  Security type: Leave it as **Default (12)**
+   -  Security type: Choose **Standard (12)**
    
    - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1 (13)**
    
@@ -185,7 +185,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    
    - Availability set: Choose **az12001a-avset (6)** from drop-down
    
-   -  Securuty type: Leave it as **Default (7)**
+   -  Securuty type: Choose **Standard (7)**
    
    - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1 (8)**
    
@@ -987,13 +987,13 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
 
 1. Ensure that you can establish SSH session to both az12001a-vm0 and az12001a-vm1 via their private IP addresses (192.168.0.4 and 192.168.0.5, respectively). 
 
-> **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments
-
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+    > **Result**: After you completed this exercise, you have provisioned Azure network resources necessary to support highly available SAP HANA deployments
+    
+    > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+    >- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
+    >- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+    >- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+    >- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 ## Review
 
