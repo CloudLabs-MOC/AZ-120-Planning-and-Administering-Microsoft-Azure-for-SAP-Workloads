@@ -185,7 +185,7 @@ In this exercise, you will deploy Azure infrastructure compute components necess
    
    - Availability set: Choose **az12001a-avset (6)** from drop-down
    
-   -  Securuty type: Leave it as **Default (7)**
+   -  Securuty type: Choose **Standard (7)**
    
    - Image: **SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1 (8)**
    
