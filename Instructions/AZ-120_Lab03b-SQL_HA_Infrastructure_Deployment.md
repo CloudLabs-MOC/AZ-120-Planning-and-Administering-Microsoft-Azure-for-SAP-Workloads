@@ -735,7 +735,7 @@ In this exercise, you will configure operating system of Azure VMs running Windo
 
 In this task, you will set share-level permissions on the **\\\\GLOBALHOST\\sapmnt** share.
 
-> **Note**: By default, the Full Control permissions are granted only to the ADATUM\Student account. 
+   > **Note**: By default, the Full Control permissions are granted only to the ADATUM\Student account. 
 
 1.  Within the Remote Desktop session to i20-ascs-0.adatum.com, from the **Windows PowerShell ISE** window, run the following:
 
@@ -775,13 +775,13 @@ In this task, you will set share-level permissions on the **\\\\GLOBALHOST\\sapm
     }
     ```
 
-> **Result**: After you completed this exercise, you have configured operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
-
-> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
-- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
-- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
-- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
-- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
+      > **Result**: After you completed this exercise, you have configured operating system of Azure VMs running Windows to support a highly available SAP NetWeaver deployment
+      
+      > **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+      >- Click the Lab Validation tab located at the upper right corner of the lab guide section and navigate to the Lab Validation Page.
+      >- Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
+      >- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+      >- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
 ## Review
 
