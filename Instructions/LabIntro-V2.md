@@ -1,75 +1,60 @@
-## Instructions
+# **Getting Started with Your AZ-120: Planning and Administering Microsoft Azure for SAP Workloads Workshop**
+ 
+Welcome to your AZ-120: Planning and Administering Microsoft Azure for SAP Workloads workshop! We've prepared a seamless environment for you to explore and learn about SAP workloads to Azure. Let's begin by making the most of this experience:
+ 
+## **Accessing Your Lab Environment**
+ 
+Once you're ready to dive in, your virtual machine and lab guide will be right at your fingertips within your web browser.
+ 
+![Access Your VM and Lab Guide](../images/labguide.png)
 
-### Getting Started with Lab
+### **Virtual Machine & Lab Guide**
+ 
+Your virtual machine is your workhorse throughout the workshop. The lab guide is your roadmap to success.
+ 
+## **Exploring Your Lab Resources**
+ 
+To get a better understanding of your lab resources and credentials, navigate to the **Environment Details** tab.
+ 
+![Explore Lab Resources](../images/env.png)
+ 
+## **Utilizing the Split Window Feature**
+ 
+For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
+ 
+![Use the Split Window Feature](../images/spl.png)
+ 
+## **Managing Your Virtual Machine**
+ 
+Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
+ 
+![Manage Your Virtual Machine](../images/res.png)
+ 
+## **Let's Get Started with Azure Portal**
+ 
+1. On your virtual machine, click on the Azure Portal icon as shown below:
+ 
+    ![Launch Azure Portal](../images/sc900-image(1).png)
 
-1. Once the environment is provisioned, a virtual machine (JumpVM) on the left and lab guide on the right will get loaded in your browser. Use this virtual machine throughout the workshop to perform the lab.
-
-    ![](../images/start2.png)
-    
-1. To get the lab environment details, you can select the **Environment** tab. Additionally, the credentials will also be emailed to your email address provided at registration.
-
-    ![](../images/env.png)
-
-1. You can also open the Lab Guide on a separate full window by selecting the **Split Window** button from the top right corner.
-
-    ![](../images/splitw.png)
-
-1. To hide the lab guide, click on **>** symbol and to expose the lab guide, click on **<** symbol.   
-
-1. Also, you can **start, stop and restart** the virtual machines from the **Resources** tab.
-
-    ![](../images/res.png)
-
-1. To Switch between the Virtual Machines, select the required VM from the dropdown.
-
-    ![](../images/switch.png)
-
-1. Click on **Next** from the bottom right and follow the instructions to perform the lab.
-
-    ![](../images/Instr4.png)   
-
-## Task 1: Log in to Azure Portal and verify the pre-deployed resources
-
-1. Let us start by logging into the Azure Portal to check the resources deployed for the lab environment. In the virtual machine (VM) on the left, click on the Azure portal desktop icon as shown below.
-
-   ![](../images/start1.png)
-   
-1. When you click on Azure portal, the edge browser welcome screen will come up, select **Start without your data**.
-
-   ![](../images/startwithoutdata.png)
-   
-1. On the next window, click on **Continue without this data**.
-
-   ![](../images/continuewithoutthis.png)
-   
-1. Click on **Confirm and start browsing**.
-
-   ![](../images/confirmandstartbrowsing.png)
-   
-1. Now, you will see two tabs in the edge browser, close the first tab named with **Microsoft Edge**.
-
-1. On the **Sign in to Microsoft Azure** window, you will see the login screen, enter the following username and click on **Next**.
-
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
-
-   ![](../images/M2-Ex1-portalsignin-1.png)
-
-1. Now enter the following password and click on **Sign in**. 
-
-   * Password: <inject key="AzureAdUserPassword"></inject>
-   
-   ![](../images/M2-Ex1-portalsignin-2.png)
-
-1. First-time users are often prompted to **Stay Signed In**, if you see any such pop-up, click on **No**
-
-   ![](../images/M2-Ex1-portalsignin-3.png)
-
-1. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
-
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
-
-1. Now you can see Azure Portal Dashboard, click on **Resource groups** from the Navigate panel to see the resource groups.
-
-   ![](../images/2.md/rgs.png)
-
-1. Now, click on **Next** from the lower right corner to move to the next page.
+ 
+2. You'll see the **Sign into Microsoft Azure** tab. Here, enter your credentials:
+ 
+   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
+ 
+    ![Enter Your Username](../images/sc900-image-1.png)
+ 
+3. Next, provide your password:
+ 
+   - **Password:** <inject key="AzureAdUserPassword"></inject>
+ 
+   ![Enter Your Password](../images/sc900-image-2.png)
+ 
+4. If prompted to stay signed in, you can click "No."
+ 
+5. If a **Welcome to Microsoft Azure** pop-up window appears, simply click "Maybe Later" to skip the tour.
+ 
+6. Click "Next" from the bottom right corner to embark on your Lab journey!
+ 
+     ![Start Your Azure Journey](../images/sc900-image(3).png)
+ 
+Now you're all set to explore the powerful world of technology. Feel free to reach out if you have any questions along the way. Enjoy your workshop!
