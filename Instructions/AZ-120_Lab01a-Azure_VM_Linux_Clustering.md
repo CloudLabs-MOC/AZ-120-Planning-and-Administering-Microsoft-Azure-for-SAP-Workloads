@@ -995,6 +995,8 @@ In this exercise, you will implement Azure Load Balancers to accommodate cluster
     >- If not, carefully read the error message and retry the step, following the instructions in the lab guide.
     >- If you need any assistance, please contact us at labs-support@spektrasystems.com. We are available 24/7 to help you out.
 
+<validation step="0b151490-f46d-42f6-a4ae-8821884bba08" />
+
 ## Review
 
 In this lab, you have:

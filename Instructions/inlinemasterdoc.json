@@ -1,0 +1,39 @@
+[
+    {
+        "Name": "AZ-120: Planning and Administering Microsoft Azure for SAP Workloads",
+        "Language": "English",
+        "BaseURL": "https://github.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/tree/stage/Instructions",
+        "Files": [
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/prod/Instructions/LabIntro.md",
+                "Order": 1
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/prod/Instructions/AZ-120_Lab01a-Azure_VM_Linux_Clustering.md",
+                "Order": 2
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/prod/Instructions/AZ-120_Lab01b-Azure_VM_Windows_Clustering.md",
+                "Order": 3,
+                "UnlockingRules": [
+                    {
+                      "UnlockDependency": "Validations",
+                      "UnlockCriteria": "Completion Percentage",
+                      "UnlockPercentageThreshold": 50,
+                      "DependentValidations": [
+                        "0b151490-f46d-42f6-a4ae-8821884bba08"
+                      ]
+                    }
+                ]
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/prod/Instructions/AZ-120_Lab03a-HANA_HA_Infrastructure_Deployment.md",
+                "Order": 4
+            },
+            {
+                "RawFilePath": "https://raw.githubusercontent.com/CloudLabs-MOC/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/prod/Instructions/AZ-120_Lab03b-SQL_HA_Infrastructure_Deployment.md",
+                "Order": 5
+            }
+        ]
+    }
+]
